@@ -11,7 +11,7 @@ import { userService } from "../service/userService";
 
 const classes = {
   navbar:
-    "flex  relative justify-between items-center text-lg font-quicksand select-none text-grey-900  bg-gray-800 h-20 p-10 sticky top-0 z-20",
+    "flex  relative justify-between items-center text-lg font-quicksand select-none text-grey-900 bg-gray-400 h-20 p-10 sticky top-0 z-20",
 
   menuLarge: "hidden sm:flex space-x-10 items-center h-10  ",
   logoLink: "flex space-x-3 items-baseline text-2xl font-bold",
