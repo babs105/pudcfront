@@ -108,7 +108,7 @@ function Comite() {
   };
   return (
     <>
-      <div className=" bg-gray-800 antialiased font-quicksand w-full text-white">
+      <div className=" font-quicksand w-full text-white antialiased">
         <form
           onSubmit={handleSubmit(onSubmit)}
           class=" mx-auto   space-y-5 p-10"
