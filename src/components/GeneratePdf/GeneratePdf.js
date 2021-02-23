@@ -73,7 +73,7 @@ const generatePDF = (comite) => {
   doc.addImage(`data:**/*;base64,${comite.photoPresidente}`, 145, 15, 50, 50);
   doc.text(` Présidente`, 160, 70);
   doc.text(
-    ` ASSEMBLEE CONSTITUTIVE : ${comite.dateAssembleeConstitutive}`,
+    ` Assemblée Constitutive : ${comite.dateAssembleeConstitutive}`,
     50,
     80
   );

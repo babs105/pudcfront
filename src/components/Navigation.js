@@ -59,7 +59,7 @@ function Navigation() {
           className={classes.logoLink}
           onClick={closeMobileMenu}
         >
-          <img className="w-30 h-20" src="images/logo_pudc.jpeg" alt="logo" />
+          <img className="w-30 h-20" src="/images/logo_pudc.jpeg" alt="logo" />
           <h4 className="text-green-700"> </h4>
         </Link>
         <div className={classes.menuIcon} onClick={handleClick}>
