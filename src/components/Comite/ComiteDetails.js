@@ -28,10 +28,10 @@ function ComiteDetails({ match }) {
           <ul>
             <li>Nom Comité : {comite.nomComite}</li>
             <li>Date de Création : {comite.dateCreation}</li>
-            <li>REGION : {comite.region}</li>
-            <li>DEPARTEMENT : {comite.departement}</li>
-            <li>COMMUNE : {comite.commune}</li>
-            <li>NUMERO RECEPISSE : {comite.numRecepisse}</li>
+            <li>Région : {comite.region}</li>
+            <li>Département : {comite.departement}</li>
+            <li>Commune : {comite.commune}</li>
+            <li>Numero Récipissé : {comite.numRecepisse}</li>
           </ul>
           <div>
             <img
@@ -42,18 +42,16 @@ function ComiteDetails({ match }) {
             <h2>Présidente</h2>
           </div>
           <ul>
-            <li>DATE MISSION D'INFORMATION 1 : {comite.dateMissionInfo1}</li>
-            <li>LIEU MISSION D'INFORMATION 1 : {comite.lieuMissionInfo1}</li>
-            <li>DATE MISSION D'INFORMATION 2 : {comite.dateMissionInfo2}</li>
-            <li>LIEU MISSION D'INFORMATION 2 :{comite.lieuMissionInfo2}</li>
-            <li>
-              DATE ASSEMBLEE D'INFORMATION 1 : {comite.dateAssembleeInfo1}
-            </li>
-            <li>DATE ASSEMBLEE D'INFORMATION 1 {comite.lieuAssembleeInfo1}</li>
+            <li>Date Mission D'information 1 : {comite.dateMissionInfo1}</li>
+            <li>Lieu Mission D'information 1 : {comite.lieuMissionInfo1}</li>
+            <li>Date Mission D'informaton 2 : {comite.dateMissionInfo2}</li>
+            <li>Lieu Mission D'information 2 :{comite.lieuMissionInfo2}</li>
+            <li>Date Assemblée D'information : {comite.dateAssembleeInfo1}</li>
+            <li>Lieu Assemblée D'information : {comite.lieuAssembleeInfo1}</li>
           </ul>
         </div>
-        <h2 className="w-1/4 mx-auto">
-          DATE ASSEMBLEE CONSTITUTIVE : {comite.dateAssembleeConstitutive}
+        <h2 className="w-1/3 mx-auto">
+          Date Assemblée Constitutive :{comite.dateAssembleeConstitutive}
         </h2>
 
         <div>

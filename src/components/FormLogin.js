@@ -5,7 +5,7 @@ import { userService } from "../service/userService";
 
 const classes = {
   formContainer:
-    "bg-gray-900 flex  flex-col items-center justify-center w-full h-screen  ",
+    "font-quicksand bg-gray-900 flex  flex-col items-center justify-center w-full h-screen  ",
   headline: "pb-1 font-bold text-xl text-gray-400",
   form:
     "max-w-md w-full text-gray-200 mt-2 px-8 md:px-0 flex flex-col justify-center items-center ",
