@@ -44,13 +44,15 @@ function ComiteDetails({ match }) {
           <ul>
             <li>Date Mission D'information 1 : {comite.dateMissionInfo1}</li>
             <li>Lieu Mission D'information 1 : {comite.lieuMissionInfo1}</li>
+            <br />
             <li>Date Mission D'informaton 2 : {comite.dateMissionInfo2}</li>
             <li>Lieu Mission D'information 2 :{comite.lieuMissionInfo2}</li>
+            <br />
             <li>Date Assemblée D'information : {comite.dateAssembleeInfo1}</li>
             <li>Lieu Assemblée D'information : {comite.lieuAssembleeInfo1}</li>
           </ul>
         </div>
-        <h2 className="w-1/3 mx-auto">
+        <h2 className="w-1/4 mx-auto">
           Date Assemblée Constitutive :{comite.dateAssembleeConstitutive}
         </h2>
 

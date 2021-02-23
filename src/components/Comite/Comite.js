@@ -264,7 +264,7 @@ function Comite() {
                   class=" text-gray-900 py-2 rounded px-4 w-full focus:outline-none focus:border-green-400  border-2"
                   ref={register}
                   type="text"
-                  name="lieuMissionInfo1"
+                  name="lieuMissionInfo2"
                 />
                 {errors.lieuMissionInfo2 && (
                   <span class="text-sm font-bold text-red-600 ">
