@@ -57,7 +57,7 @@ function ComiteDetails({ match }) {
         </h2>
 
         <div>
-          <h2 className=" w-1/4  text-center   mx-auto">Liste des Membres</h2>
+          <h2 className=" w-1/4  text-center mx-auto">Liste des Membres</h2>
 
           <table className="table-auto  text-black  rounded-lg shadow mx-auto w-10/12 border-collapse">
             <thead>

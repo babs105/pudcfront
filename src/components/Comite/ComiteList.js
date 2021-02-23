@@ -9,7 +9,7 @@ function ComiteList() {
   const [comite, setComite] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [nombrePerPage, setNombrePerPage] = useState(2);
+  const [nombrePerPage, setNombrePerPage] = useState(5);
   const [findKey, setFindKey] = useState("");
   let history = useHistory();
 
