@@ -63,7 +63,6 @@ function ComiteList() {
   const imprimer = () => {
     window.print();
   };
-
   let i = 1;
   return (
     <>
@@ -99,7 +98,7 @@ function ComiteList() {
                 history.push("/comite");
               }}
             >
-              Ajouter Comite
+              Ajouter Comité
             </button>
           </div>
           <table className="table-auto rounded-lg shadow w-full border-collapse">
@@ -107,13 +106,13 @@ function ComiteList() {
               <tr className="uppercase bg-gray-300">
                 <th className="py-4 px-2 border-r-2 border-grey-800">N°</th>
                 <th className="py-4 px-2 border-r-2 border-grey-800">
-                  Nom Comite
+                  Dénomination
                 </th>
                 <th className="py-4 px-2 border-r-2 border-grey-800">
                   Date Création
                 </th>
                 <th className="py-4 px-2 border-r-2 border-grey-light">
-                  Region
+                  Région
                 </th>
                 <th className="py-4 px-2  border-grey-light">Action</th>
               </tr>
@@ -156,7 +155,7 @@ function ComiteList() {
                           console.log(row.id);
                           history.push(`/comite-show/${row.id}`);
                         }}
-                        className="w-5 h-5"
+                        className="w-5 h-5 cursor-pointer"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"

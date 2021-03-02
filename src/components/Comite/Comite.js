@@ -21,6 +21,7 @@ function Comite() {
   const [prenom, setPrenom] = useState("");
   const [nom, setNom] = useState("");
   const [poste, setPoste] = useState("");
+  const [isRecepisse, setIsRecepisse] = useState(false);
 
   const [prenomP, setPrenomP] = useState("");
   const [nomP, setNomP] = useState("");
@@ -51,9 +52,9 @@ function Comite() {
       ...listeMembre,
       { id: uuidv4(), prenom: prenom, nom: nom, tel: "", poste: poste },
     ]);
-    setPrenom("");
-    setNom("");
-    setPoste("Poste");
+    // setPrenom("");
+    // setNom("");
+    // setPoste("Poste");
   };
 
   // const handleChangePrenom = (event) => {
@@ -66,9 +67,12 @@ function Comite() {
   const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(schema),
   });
-  //   const infoKilometrage = watch("infoKilometrage");
+  const watchShowRecepisse = watch("showRecepisse", false);
+  const watchShowNombreEquipement = watch("showNombreEquipement", false);
+
+  const watchRegion = watch("region", " ");
   const onSubmit = (data) => {
-    // console.log(data);
+    console.log(watch.value);
     setlogging(true);
     const comite = {
       dateCreation: data.dateCreation,
@@ -76,13 +80,11 @@ function Comite() {
       region: data.region,
       departement: data.departement,
       commune: data.commune,
+      quartierVillage: data.quartierVillage,
+      nomChefVillage: data.nomChefVillage,
+      telChefVillage: data.telChefVillage,
       numRecepisse: data.numRecepisse,
-      dateMissionInfo1: data.dateMissionInfo1,
-      lieuMissionInfo1: data.lieuMissionInfo1,
-      dateMissionInfo2: data.dateMissionInfo2,
-      lieuMissionInfo2: data.lieuMissionInfo2,
-      dateAssembleeInfo1: data.dateAssembleeInfo1,
-      lieuAssembleeInfo1: data.lieuAssembleeInfo1,
+      dateAssembleeInfo: data.dateAssembleeInfo,
       dateAssembleeConstitutive: data.dateAssembleeConstitutive,
       isEquipement: data.isEquipement,
       membres: listeMembre,
@@ -109,14 +111,11 @@ function Comite() {
   return (
     <>
       <div className=" bg-gray-800 antialiased font-quicksand w-full text-white">
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          class=" mx-auto   space-y-5 p-10"
-        >
-          <h2 className="text-center text-xl">Ajout Comite</h2>
-          <div className="flex flex-col space-y-8  sm:flex-row sm:space-x-12 sm:space-y-0  ">
+        <form onSubmit={handleSubmit(onSubmit)} class=" mx-auto space-y-5 p-10">
+          <h2 className="text-center uppercase text-xl">Ajout Comite</h2>
+          <div className="flex flex-col space-y-8 sm:flex-row sm:mx-auto sm:space-x-12 sm:space-y-0  ">
             {" "}
-            <div className="flex flex-col space-y-4 sm:w-1/3">
+            <div className="flex flex-col space-y-4 sm:w-6/12">
               <div>
                 {" "}
                 <label> Dénomination</label>
@@ -128,13 +127,13 @@ function Comite() {
                 />
                 {errors.nomComite && (
                   <span class="text-sm font-bold text-red-600 ">
-                    nomComite invalide
+                    Dénomination invalide
                   </span>
                 )}
               </div>
               <div>
                 {" "}
-                <label> Date Creation</label>
+                <label> Date Création</label>
                 <input
                   class=" text-gray-900 py-2 rounded px-4 w-full focus:outline-none focus:border-green-400  border-2"
                   ref={register}
@@ -143,19 +142,33 @@ function Comite() {
                 />
                 {errors.dateCreation && (
                   <span class="text-sm font-bold text-red-600 ">
-                    dateCreation invalide
+                    date Création invalide
                   </span>
                 )}
               </div>
-              {/* <div>
-            <label> Saisir le Kilometrage</label>
-            <input
-              class="text-gray-900 py-2 rounded  w-full  focus:outline-none focus:border-green-400 border-2"
-              ref={register}
-              type="checkbox"
-              name="infoKilometrage"
-            />
-          </div> */}
+              <label> Avez-vous un récépissé ?</label>
+              <div>
+                {" "}
+                Oui{"  "}
+                <input type="checkbox" name="showRecepisse" ref={register} />
+              </div>
+              {watchShowRecepisse && (
+                <div>
+                  {" "}
+                  <label> Numéro récépissé</label>
+                  <input
+                    class=" text-gray-900 py-2 rounded px-4 w-full focus:outline-none focus:border-green-400  border-2"
+                    ref={register}
+                    type="text "
+                    name="numRecepisse"
+                  />{" "}
+                  {errors.numRecepisse && (
+                    <span class="text-sm font-bold text-red-600 ">
+                      numRecepisse invalide
+                    </span>
+                  )}
+                </div>
+              )}
               <div>
                 <label> Région : </label>
                 <select
@@ -164,24 +177,46 @@ function Comite() {
                   type="text"
                   name="region"
                 >
-                  <option value="bpv">BPV</option>
-                  <option value="kirene">KIRENE</option>
-                  <option value="diourbel">DIOURBEL</option>
+                  <option value="Région">Région</option>
+                  <option value="Ziguinchor">Ziguinchor</option>
+                  <option value="Tambacounda">Tambacounda</option>
+                  <option value="Sédhiou">Sédhiou</option>
+                  <option value="Kédougou">Kédougou</option>
+                  <option value="Kolda">Kolda</option>
+                  <option value="Louga">Louga</option>
+                  <option value="Matam">Matam</option>
+                  <option value="Saint-Louis">Saint-Louis</option>
+                  <option value="Dakar">Dakar</option>
+                  <option value="Diourbel">Diourbel</option>
+                  <option value="Fatick">Fatick</option>
+                  <option value="Thiès">Thiès</option>
+                  <option value="Kaffrine">Kaffrine</option>
+                  <option value="Kaolack">Kaolack</option>
                 </select>
               </div>
-              <div>
-                <label> Département : </label>
-                <select
-                  class="text-gray-900 py-2 rounded px-4  w-full  focus:outline-none focus:border-green-400 border-2"
-                  ref={register}
-                  type="text"
-                  name="departement"
-                >
-                  <option value="bpv">BPV</option>
-                  <option value="kirene">KIRENE</option>
-                  <option value="diourbel">DIOURBEL</option>
-                </select>
-              </div>
+              {watchRegion === "Ziguinchor" && (
+                <div>
+                  <label> Département : </label>
+                  <select
+                    class="text-gray-900 py-2 rounded px-4  w-full  focus:outline-none focus:border-green-400 border-2"
+                    ref={register}
+                    type="text"
+                    name="departement"
+                  >
+                    <option value="Département">Département</option>
+                    <option value="Louga">Louga</option>
+                    <option value="Matam">Matam</option>
+                    <option value="Saint-Louis">Saint-Louis</option>
+                    <option value="Dakar">Dakar</option>
+                    <option value="Diourbel">Diourbel</option>
+                    <option value="Fatick">Fatick</option>
+                    <option value="Thiès">Thiès</option>
+                    <option value="Kaffrine">Kaffrine</option>
+                    <option value="Kaolack">Kaolack</option>
+                  </select>
+                </div>
+              )}
+
               <div>
                 <label> Commune : </label>
                 <select
@@ -190,120 +225,119 @@ function Comite() {
                   type="text"
                   name="commune"
                 >
-                  <option value="bpv">BPV</option>
-                  <option value="kirene">KIRENE</option>
-                  <option value="diourbel">DIOURBEL</option>
+                  <option value="Commune">Commune</option>
+                  <option value="Ziguinchor">Ziguinchor</option>
+                  <option value="Tambacounda">Tambacounda</option>
+                  <option value="Sédhiou">Sédhiou</option>
+                  <option value="Kédougou">Kédougou</option>
+                  <option value="Kolda">Kolda</option>
+                  <option value="Louga">Louga</option>
+                  <option value="Matam">Matam</option>
+                  <option value="Saint-Louis">Saint-Louis</option>
+                  <option value="Dakar">Dakar</option>
+                  <option value="Diourbel">Diourbel</option>
+                  <option value="Fatick">Fatick</option>
+                  <option value="Thiès">Thiès</option>
+                  <option value="Kaffrine">Kaffrine</option>
+                  <option value="Kaolack">Kaolack</option>
                 </select>
               </div>
+              <label> Avez-vous des équipements ?</label>
+              <div>
+                Oui{"  "}
+                <input
+                  type="checkbox"
+                  name="showNombreEquipement"
+                  ref={register}
+                />
+              </div>
+              {watchShowNombreEquipement && (
+                <div>
+                  <label
+                    className="pr-3
+                  "
+                  >
+                    {" "}
+                    Nombre d'équipement :{" "}
+                  </label>
+                  <select
+                    class="text-gray-900 py-2 rounded   w-4/12  focus:outline-none focus:border-green-400 border-2"
+                    ref={register}
+                    type="text"
+                    name="nbreEquipement"
+                  >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                  </select>
+                </div>
+              )}
+            </div>
+            <div className="flex flex-col space-y-4 sm:w-6/12">
               <div>
                 {" "}
-                <label> Numero recepissé</label>
+                <label> Village/Quartier</label>
                 <input
                   class=" text-gray-900 py-2 rounded px-4 w-full focus:outline-none focus:border-green-400  border-2"
                   ref={register}
                   type="text "
-                  name="numRecepisse"
+                  name="quartierVillage"
                 />
-                {errors.numRecepisse && (
+                {errors.quartierVillage && (
                   <span class="text-sm font-bold text-red-600 ">
-                    numRecepisse invalide
+                    quartier/Village invalide
                   </span>
                 )}
               </div>
-            </div>
-            <div className="flex flex-col space-y-4 sm:w-1/3">
               <div>
                 {" "}
-                <label>Date Mission d'information</label>
+                <label> Nom Chef de Village</label>
+                <input
+                  class=" text-gray-900 py-2 rounded px-4 w-full focus:outline-none focus:border-green-400  border-2"
+                  ref={register}
+                  type="text "
+                  name="nomChefVillage"
+                />
+                {errors.nomChefVillage && (
+                  <span class="text-sm font-bold text-red-600 ">
+                    nom Chef de Village invalide
+                  </span>
+                )}
+              </div>
+              <div>
+                {" "}
+                <label> Telephone Chef de village</label>
+                <input
+                  class=" text-gray-900 py-2 rounded px-4 w-full focus:outline-none focus:border-green-400  border-2"
+                  ref={register}
+                  type="text "
+                  name="telChefVillage"
+                />
+                {errors.telChefVillage && (
+                  <span class="text-sm font-bold text-red-600 ">
+                    nom Chef de Village invalide
+                  </span>
+                )}
+              </div>
+              <div>
+                {" "}
+                <label>Date Assemblée d'information</label>
                 <input
                   class=" text-gray-900 py-2 rounded px-4 w-full focus:outline-none focus:border-green-400  border-2"
                   ref={register}
                   type="date"
-                  name="dateMissionInfo1"
+                  name="dateAssembleeInfo"
                 />
-                {errors.dateMissionInfo1 && (
+                {errors.dateAssembleeInfo && (
                   <span class="text-sm font-bold text-red-600 ">
-                    dateMissionInfo1 invalide
+                    date Assemblee Info invalide
                   </span>
                 )}
               </div>
-              <div>
-                {" "}
-                <label> Lieu Mission d'information</label>
-                <input
-                  class=" text-gray-900 py-2 rounded px-4 w-full focus:outline-none focus:border-green-400  border-2"
-                  ref={register}
-                  type="text"
-                  name="lieuMissionInfo1"
-                />
-                {errors.lieuMissionInfo1 && (
-                  <span class="text-sm font-bold text-red-600 ">
-                    lieuMissionInfo1 invalide
-                  </span>
-                )}
-              </div>
-              <div>
-                {" "}
-                <label>Date Mission d'information 2</label>
-                <input
-                  class=" text-gray-900 py-2 rounded px-4 w-full focus:outline-none focus:border-green-400  border-2"
-                  ref={register}
-                  type="date"
-                  name="dateMissionInfo2"
-                />
-                {errors.dateMissionInfo2 && (
-                  <span class="text-sm font-bold text-red-600 ">
-                    dateMissionInfo2 invalide
-                  </span>
-                )}
-              </div>
-              <div>
-                {" "}
-                <label> Lieu Mission d'information 2</label>
-                <input
-                  class=" text-gray-900 py-2 rounded px-4 w-full focus:outline-none focus:border-green-400  border-2"
-                  ref={register}
-                  type="text"
-                  name="lieuMissionInfo2"
-                />
-                {errors.lieuMissionInfo2 && (
-                  <span class="text-sm font-bold text-red-600 ">
-                    lieuMissionInfo2 invalide
-                  </span>
-                )}
-              </div>
-              <div>
-                {" "}
-                <label> Date Assemblée Information</label>
-                <input
-                  class=" text-gray-900 py-2 rounded px-4 w-full focus:outline-none focus:border-green-400  border-2"
-                  ref={register}
-                  type="date"
-                  name="dateAssembleeInfo1"
-                />
-                {errors.dateAssembleeInfo1 && (
-                  <span class="text-sm font-bold text-red-600 ">
-                    dateAssembleeInfo1 invalide
-                  </span>
-                )}
-              </div>
-              <div>
-                {" "}
-                <label> Lieu Assemblée Information</label>
-                <input
-                  class=" text-gray-900 py-2 rounded px-4 w-full focus:outline-none focus:border-green-400  border-2"
-                  ref={register}
-                  type="text"
-                  name="lieuAssembleeInfo1"
-                />
-                {errors.lieuAssembleeInfo1 && (
-                  <span class="text-sm font-bold text-red-600 ">
-                    lieuAssembleeInfo1 invalide
-                  </span>
-                )}
-              </div>
-            </div>
-            <div className="flex flex-col space-y-4 sm:w-1/3">
               <div>
                 <label> Date Assemblée Constitutive</label>
                 <input
@@ -315,7 +349,7 @@ function Comite() {
                 {errors.dateAssembleeConstitutive && (
                   <span class="text-sm font-bold text-red-600 ">
                     dateAssembleeConstitutive invalide
-                  </span>
+                                  </span>
                 )}
               </div>
 
@@ -336,9 +370,11 @@ function Comite() {
                   </span>
                 )}
               </div>
+            </div>
+            <div className="flex flex-col space-y-4 sm:w-6/12">
               <div className="flex flex-col space-y-40">
                 <div className=" flex flex-col space-y-5 justify-center items-center sm:justify-start sm:items-start ">
-                  <h2>Liste de Présence</h2>{" "}
+                  <h2>Liste Membres du comité directeur</h2>{" "}
                   <div className="w-full">
                     <input
                       placeholder="Prenom"
@@ -408,11 +444,11 @@ function Comite() {
                         d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
                       />
                     </svg>{" "}
-                    Liste Présence
+                    Ajouter Liste
                   </button>
                   <ul className="mb-50 divide-y-2 divide-white w-full">
                     {listePresence.map((present, index) => (
-                      <div className="flex justify-between items-center">
+                      <div className="flex justify-between space-y-3 items-center">
                         {" "}
                         <li key={uuidv4()}>
                           {index + 1} - {present.prenom} - {present.nom} -
@@ -439,106 +475,127 @@ function Comite() {
                     ))}
                   </ul>
                 </div>
-                <div className=" flex flex-col space-y-5 justify-center items-center sm:justify-start sm:items-start ">
-                  {" "}
-                  <h2>Liste des Membres</h2>
-                  <div className="w-full">
-                    <input
-                      class=" text-gray-900 py-2 rounded px-4 w-full focus:outline-none focus:border-green-400  border-2 "
-                      name="prenom"
-                      placeholder="Prenom"
-                      onChange={(e) => {
-                        setPrenom(e.target.value);
-                      }}
-                    />
-                    {/* <button className=" bg-orange-500 px-10 py-1" onClick={() => {}}>
+              </div>
+            </div>
+            <div className="flex flex-col space-y-4 sm:w-6/12">
+              <div className=" flex flex-col space-y-5 justify-center items-center sm:justify-start sm:items-start ">
+                {" "}
+                <h2>Liste Membres du bureau </h2>
+                <div className="w-full">
+                  <input
+                    class=" text-gray-900 py-2 rounded px-4 w-full focus:outline-none focus:border-green-400  border-2 "
+                    name="prenom"
+                    placeholder="Prenom"
+                    onChange={(e) => {
+                      setPrenom(e.target.value);
+                    }}
+                  />
+                  {/* <button className=" bg-orange-500 px-10 py-1" onClick={() => {}}>
               Upload!
             </button> */}
-                    {errors.prenom && (
-                      <span class="text-sm font-bold text-red-600 "></span>
-                    )}
-                  </div>
-                  <div className="w-full mt-4">
-                    <input
-                      class="  text-gray-900 py-2 rounded px-4 w-full focus:outline-none focus:border-green-400  border-2 "
-                      name="nom"
-                      placeholder="Nom"
-                      onChange={(e) => {
-                        setNom(e.target.value);
-                      }}
-                    />
-                    {/* <button className=" bg-orange-500 px-10 py-1" onClick={() => {}}>
-              Upload!
-            </button> */}
-                    {errors.nom && (
-                      <span class="text-sm font-bold text-red-600 "></span>
-                    )}
-                  </div>
-                  <div className="w-full">
-                    <select
-                      class="text-gray-900 py-2 rounded px-4  w-full  focus:outline-none focus:border-green-400 border-2"
-                      type="text"
-                      value={poste}
-                      name="poste"
-                      onChange={(e) => setPoste(e.target.value)}
-                    >
-                      <option value="Poste">Poste</option>
-                      <option value="Présidente">Présidente</option>
-                      <option value="Sécretaire général">
-                        Sécretaire général
-                      </option>
-                      <option value="Trésorier">Trésorier</option>
-                    </select>
-                  </div>
-                  <button
-                    disabled={nom === "" || prenom === "" || poste === ""}
-                    className=" bg-green-500  hover:bg-green-800 p-2 focus:outline-none rounded-lg flex justify-center items-center "
-                    onClick={addMember}
-                  >
-                    <svg
-                      className="h-5 w-5"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                    Liste membre
-                  </button>
-                  <ul className=" divide-y-2 divide-white w-full">
-                    {listeMembre.map((member, index) => (
-                      <div className="flex justify-between items-center">
-                        <li key={uuidv4()}>
-                          {index + 1} - {member.prenom} - {member.nom} -{" "}
-                          {member.poste}
-                        </li>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          className="w-5 h-5 cursor-pointer "
-                          onClick={() => {
-                            removeItemListeMembre(member);
-                          }}
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                          />
-                        </svg>
-                      </div>
-                    ))}
-                  </ul>
+                  {errors.prenom && (
+                    <span class="text-sm font-bold text-red-600 "></span>
+                  )}
                 </div>
+                <div className="w-full mt-4">
+                  <input
+                    class="  text-gray-900 py-2 rounded px-4 w-full focus:outline-none focus:border-green-400  border-2 "
+                    name="nom"
+                    placeholder="Nom"
+                    onChange={(e) => {
+                      setNom(e.target.value);
+                    }}
+                  />
+                  {/* <button className=" bg-orange-500 px-10 py-1" onClick={() => {}}>
+              Upload!
+            </button> */}
+                  {errors.nom && (
+                    <span class="text-sm font-bold text-red-600 "></span>
+                  )}
+                </div>
+                <div className="w-full">
+                  <select
+                    class="text-gray-900 py-2 rounded px-4  w-full  focus:outline-none focus:border-green-400 border-2"
+                    type="text"
+                    value={poste}
+                    name="poste"
+                    onChange={(e) => setPoste(e.target.value)}
+                  >
+                    <option value="Poste">Poste</option>
+                    <option value="Présidente">Présidente</option>
+                    <option value="Vice-présidente 1">Vice-présidente 1</option>
+                    <option value="Vice-présidente 2">Vice-présidente 2</option>
+                    <option value="Secrétaire Générale">
+                      Secrétaire Générale
+                    </option>
+                    <option value="Secrétaire Générale Adjointe">
+                      Secrétaire Générale Adjointe
+                    </option>
+                    <option value="Trésorière Générale">
+                      Trésorière Générale
+                    </option>
+                    <option value="Trésorière Générale Adjointe">
+                      Trésorière Générale Adjointe
+                    </option>
+                    <option value="Commissaire au compte 1">
+                      Commissaire au compte 1
+                    </option>
+                    <option value="Commissaire au compte 2">
+                      Commissaire au compte 2
+                    </option>
+                    <option value="Commissaire au compte 3">
+                      Commissaire au compte 3
+                    </option>
+                  </select>
+                </div>
+                <button
+                  disabled={nom === "" || prenom === "" || poste === ""}
+                  className=" bg-green-500  hover:bg-green-800 p-2 focus:outline-none rounded-lg flex justify-center items-center "
+                  onClick={addMember}
+                >
+                  <svg
+                    className="h-5 w-5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  Ajouter Liste
+                </button>
+                <ul className=" divide-y-2 divide-white w-full">
+                  {listeMembre.map((member, index) => (
+                    <div className="flex justify-between space-y-3 items-center">
+                      <li key={uuidv4()}>
+                        {index + 1} - {member.prenom} - {member.nom} -{" "}
+                        {member.poste}
+                      </li>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        className="w-5 h-5 cursor-pointer "
+                        onClick={() => {
+                          removeItemListeMembre(member);
+                        }}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                        />
+                      </svg>
+                    </div>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>

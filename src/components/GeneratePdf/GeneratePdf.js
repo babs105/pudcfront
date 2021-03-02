@@ -64,12 +64,12 @@ const generatePDF = (comite) => {
   doc.text(`Département : ${comite.departement}`, 14, 30);
   doc.text(`Commune : ${comite.commune}`, 14, 35);
   doc.text(`Numéro Recépissé : ${comite.numRecepisse}`, 14, 40);
-  doc.text(`Mission d'information 1 :${comite.dateMissionInfo1}`, 14, 45);
-  doc.text(`Lieu: ${comite.lieuMissionInfo1}`, 14, 50);
-  doc.text(`Mission d'information 2 : ${comite.dateMissionInfo2}`, 14, 55);
-  doc.text(`Lieu : ${comite.lieuMissionInfo2}`, 14, 60);
-  doc.text(`Assemblée d'information 1 : ${comite.dateAssembleeInfo1}`, 14, 65);
-  doc.text(`Lieu : ${comite.lieuAssembleeInfo1}`, 14, 70);
+  doc.text(`Quartier-Village :${comite.quartierVillage}`, 14, 45);
+  doc.text(`Nom Chef de Village: ${comite.nomChefVillage}`, 14, 50);
+  doc.text(`Téléphone Chef de Village: : ${comite.telChefVillage}`, 14, 55);
+
+  doc.text(`Assemblée d'information  : ${comite.dateAssembleeInfo}`, 14, 65);
+  // doc.text(`Lieu : ${comite.lieuAssembleeInfo1}`, 14, 70);
   doc.addImage(`data:**/*;base64,${comite.photoPresidente}`, 145, 15, 50, 50);
   doc.text(` Présidente`, 160, 70);
   doc.text(
@@ -78,9 +78,9 @@ const generatePDF = (comite) => {
     80
   );
 
-  doc.text(`Liste des membres`, 80, 88);
+  doc.text(`Liste des membres du bureau `, 80, 88);
   doc.addPage(); // this code creates new page in pdf document
-  doc.text(`Liste de Présence`, 80, 15);
+  doc.text(`Liste des membres du comité directeur`, 80, 15);
   doc.autoTable(tableColumnPresence, tableRowsPresence, { startY: 20 });
 
   //   doc.text("Closed tickets within the last one month.", 14, 45);

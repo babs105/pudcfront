@@ -8,7 +8,7 @@ function Pagination({ nombrePerPage, nombreTotal, paginate }) {
   return (
     <ul className="flex flex-row space-x-2">
       <li
-        className=" text-white  rounded-lg px-2 bg-green-300"
+        className=" text-white cursor-pointer rounded-lg px-2 bg-green-300"
         onClick={() => {
           paginate(1);
         }}
@@ -18,7 +18,7 @@ function Pagination({ nombrePerPage, nombreTotal, paginate }) {
       {pageNumber.map((number) => (
         <li
           key={number}
-          className="px-2 py-1  rounded-md border-green-400 hover:bg-green-300 hover:text-white"
+          className="px-2 py-1 cursor-pointer rounded-md text-white border-green-400 hover:bg-green-300 hover:text-white"
           onClick={() => {
             paginate(number);
           }}
@@ -27,7 +27,7 @@ function Pagination({ nombrePerPage, nombreTotal, paginate }) {
         </li>
       ))}
       <li
-        className=" text-white   rounded-md px-2 bg-green-300"
+        className=" text-white cursor-pointer  rounded-md px-2 bg-green-300"
         onClick={() => {
           paginate(pageNumber.length);
         }}
