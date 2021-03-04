@@ -64,6 +64,7 @@ function Equipements({ match }) {
         console.log(res);
       })
       .catch((e) => {
+      
         setlogging(false);
         setmessage("Echec change Statut ressayez");
         console.log(e);
@@ -239,6 +240,8 @@ function Equipements({ match }) {
                       ? "text-white bg-" + color + "-600"
                       : "text-" + color + "-600 bg-white")
                   }
+
+                  
                   onClick={(e) => {
                     e.preventDefault();
                     setOpenTab(1);
