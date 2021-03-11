@@ -33,7 +33,9 @@ function Equipements({ match }) {
   const [nombrePerPage, setNombrePerPage] = useState(5);
   const [findKey, setFindKey] = useState("");
   const [logging, setlogging] = useState(false);
-  const [message, setmessage] = useState("");
+  const [messagePanne, setMessagePanne] = useState("");
+  const [messageMarche, setMessageMarche] = useState("");
+  
   const [statut, setStatut] = useState(false);
 
   useEffect(() => {
@@ -47,7 +49,7 @@ function Equipements({ match }) {
       ? yupResolver(schema1)
       : yupResolver(schema2),
   });
-  const onSubmit1 = (data) => {
+  const onSubmit1 = (data,e) => {
     const equipment = {
       dateDeclaration: data.dateDeclaration,
       idEquipement: idEquipement,
@@ -60,20 +62,24 @@ function Equipements({ match }) {
       .declarePanneEquipment(equipment)
       .then((res) => {
         setlogging(false);
-        setmessage("Equipement en Panne");
+        setMessagePanne("Equipement en Panne");
+        getEquipmentByIdComite();
+        getPanneByIdComite();
+        getReparationByIdComite();
+        e.target.reset();
         console.log(res);
       })
       .catch((e) => {
       
         setlogging(false);
-        setmessage("Echec change Statut ressayez");
+        setMessagePanne("Echec change Statut ressayez");
         console.log(e);
       });
     console.log("declare panne");
 
     // console.log(equipment);
   };
-  const onSubmit2 = (data) => {
+  const onSubmit2 = (data,e) => {
     const equipment = {
       dateCloture: data.dateCloture,
       idEquipement: idEquipement,
@@ -87,12 +93,16 @@ function Equipements({ match }) {
       .cloturerPanneEquipment(equipment)
       .then((res) => {
         setlogging(false);
-        setmessage("Equipement En Marche");
+        setMessageMarche("Equipement en Marche");
+        getEquipmentByIdComite();
+        getPanneByIdComite();
+        getReparationByIdComite();
+        e.target.reset();
         console.log(res);
       })
       .catch((e) => {
         setlogging(false);
-        setmessage("Echec change Statut ressayez");
+        setMessageMarche("Echec change Statut ressayez");
         console.log(e);
       });
   };
@@ -192,11 +202,13 @@ function Equipements({ match }) {
   const openModalDeclarePanne = (data) => {
     setShowModalDeclarePanne(true);
     setidEquipement(data.id);
+    setMessagePanne('');
     setTypeEquipement(data.typeEquipement);
   };
   const openModalCloturePanne = (data) => {
     setShowModalCloturePanne(true);
     setidEquipement(data.id);
+    setMessageMarche()
     setTypeEquipement(data.typeEquipement);
   };
 
@@ -216,20 +228,18 @@ function Equipements({ match }) {
   let nomComite = JSON.parse(match.params.comiteParam).nomComite;
   let history = useHistory();
   let color = "green";
-  let i = 1,
-    j = 1,
-    k = 1;
+  let i = 1,j = 1,k = 1;
 
   return (
-    <>
-      <div className="bg-gray-800 flex flex-col  text-black font-quicksand w-full">
+    
+      <div className="bg-gray-800 flex flex-col text-black font-quicksand h-full w-full">
         <h2 className="mx-auto text-xl uppercase pt-3  text-white">
           {nomComite}
         </h2>
-        <div className="flex w-10/12 h-full mx-auto">
-          <div className="w-full h-full">
+        <div className=" sm:w-10/12 sm:mx-auto">
+          
             <ul
-              className="flex mb-0 list-none flex-nowrap pt-3 pb-4 flex-row"
+              className="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row"
               role="tablist"
             >
               <li className="mb-2 mr-2 last:mr-0 flex-auto text-center">
@@ -292,12 +302,11 @@ function Equipements({ match }) {
                 </a>
               </li>
             </ul>
-            <div className="flex flex-col min-w-0 break-words rounded w-full h-full">
-              <div className="py-5 flex-auto">
-                <div className="tab-content tab-space h-screen  ">
+            
+                <div className="tab-content tab-space h-screen">
                   <div
                     className={
-                      openTab === 1 ? "flex flex-col items-center" : "hidden"
+                      openTab === 1 ? "flex flex-col items-center " : "hidden"
                     }
                     id="link1"
                   >
@@ -323,12 +332,12 @@ function Equipements({ match }) {
                         onChange={(event) => setFindKey(event.target.value)}
                       />
                     </div>
-                    <div className="w-full py-4">
+                    <div className=" sm:w-full py-4 ">
                       <h2 className="text-center text-white text-lg">
                         {" "}
                         Liste des Equipements
                       </h2>
-                      <div className=" flex items-center space-x-4 text-white">
+                      <div className=" flex flex-col items-center sm:flex-row sm:space-x-4 text-white">
                         <button
                           className="bg-green-600 p-2 rounded-lg mb-2"
                           onClick={() => {
@@ -338,9 +347,9 @@ function Equipements({ match }) {
                           Ajouter Equipement
                         </button>
                       </div>
-                      <table className="w-full border-collapse">
+                      <table className=" table-auto  w-full border-collapse">
                         <thead>
-                          <tr className="uppercase bg-gray-300">
+                          <tr className="uppercase  bg-gray-300">
                             <th className="py-4 px-2 border-r-2 border-grey-800">
                               N°
                             </th>
@@ -539,7 +548,7 @@ function Equipements({ match }) {
                                   </button>
                                 </div>
                                 <p className="text-center font-semibold text-orange-300">
-                                  {message}
+                                  {messagePanne}
                                 </p>
                               </div>
                             </form>
@@ -637,7 +646,7 @@ function Equipements({ match }) {
                                   </button>
                                 </div>
                                 <p className="text-center font-semibold text-orange-300">
-                                  {message}
+                                  {messageMarche}
                                 </p>
                               </div>
                             </form>
@@ -675,12 +684,12 @@ function Equipements({ match }) {
                         onChange={(event) => setFindKey(event.target.value)}
                       />
                     </div>
-                    <div className="w-full py-4">
+                    <div className=" sm:w-full py-4">
                       <h2 className="text-center text-white text-lg">
                         {" "}
                         Les Pannes
                       </h2>
-                      <div className=" flex items-center space-x-4 text-white">
+                      <div className=" flex items-center  text-white">
                         {/* <button
                           className="bg-green-600 p-2 rounded-lg mb-2"
                           onClick={() => {
@@ -690,8 +699,8 @@ function Equipements({ match }) {
                           Ajouter Equipement
                         </button> */}
                       </div>
-                      <table className="w-full border-collapse">
-                        <thead>
+                      <table className="table-auto w-full border-collapse">
+                        <thead >
                           <tr className="uppercase bg-gray-300">
                             <th className="py-4 px-2 border-r-2 border-grey-800">
                               N°
@@ -709,7 +718,7 @@ function Equipements({ match }) {
                               Type de Panne
                             </th>
 
-                            <th className="py-4 px-2  border-grey-light">
+                            <th className="py-4 px-2 border-r-2 border-grey-light">
                               Action
                             </th>
                           </tr>
@@ -752,13 +761,13 @@ function Equipements({ match }) {
                                 <td className="py-4 px-2 border-b border-grey-light">
                                   {row.typePanne}
                                 </td>
-                                <td className=" flex justify-center items-center space-x-5 py-4 px-2 border-b border-grey-light">
+                                <td className=" flex justify-center items-center space-x-5  py-4 px-2 border-b border-grey-light">
                                   <svg
                                     onClick={() => {
                                       console.log(row.id);
                                       //   history.push(`/comite-show/${row.id}`);
                                     }}
-                                    className="w-5 h-5 cursor-pointer"
+                                    className="w-5 h-6 cursor-pointer"
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
@@ -777,27 +786,6 @@ function Equipements({ match }) {
                                       d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
                                     />
                                   </svg>
-                                  {/* {row.statutEquipement === "EN MARCHE" ? (
-                                    <button
-                                      className="text-red-600 p-2 bg-orange-100 rounded-lg mb-2"
-                                      onClick={() => {
-                                        openModalDeclarePanne(row.id);
-                                        setShowModalDeclarePanne(true);
-                                      }}
-                                    >
-                                      Déclarer Panne
-                                    </button>
-                                  ) : (
-                                    <button
-                                      className="text-red-600  bg-green-100 p-2 rounded-lg mb-2"
-                                      onClick={() => {
-                                        openModalCloturePanne(row.id);
-                                        setShowModalCloturePanne(true);
-                                      }}
-                                    >
-                                      Clôturer Panne
-                                    </button>
-                                  )} */}
                                 </td>
                               </tr>
                             ))}
@@ -839,7 +827,7 @@ function Equipements({ match }) {
                         onChange={(event) => setFindKey(event.target.value)}
                       />
                     </div>
-                    <div className="w-full   py-4">
+                    <div className="sm:w-full py-4">
                       <h2 className="text-center text-white text-lg">
                         {" "}
                         Les Réparations
@@ -977,10 +965,8 @@ function Equipements({ match }) {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </>
+        
+    
   );
 }
 
