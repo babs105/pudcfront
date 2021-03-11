@@ -239,16 +239,16 @@ function Equipements({ match }) {
         <div className=" sm:w-10/12 sm:mx-auto">
           
             <ul
-              className="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row"
+              className="flex mb-0 list-none flex-wrap pt-3  flex-row"
               role="tablist"
             >
-              <li className="mb-2 mr-2 last:mr-0 flex-auto text-center">
+              <li className="flex-auto text-center">
                 <a
                   className={
-                    "text-lg font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal " +
+                    "text-lg font-bold uppercase px-5 py-3 shadow-lg block leading-normal"+
                     (openTab === 1
-                      ? "text-white bg-" + color + "-600"
-                      : "text-" + color + "-600 bg-white")
+                      ? " text-white bg-" + color + "-600"
+                      : " text-" + color + "-600 bg-white")
                   }
 
                   
@@ -263,10 +263,10 @@ function Equipements({ match }) {
                   Equipements
                 </a>
               </li>
-              <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
+              <li className=" flex-auto text-center">
                 <a
                   className={
-                    "text-lg font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal " +
+                    "text-lg font-bold uppercase px-5 py-3 shadow-lg  block leading-normal " +
                     (openTab === 2
                       ? "text-white bg-" + color + "-600"
                       : "text-" + color + "-600 bg-white")
@@ -282,10 +282,10 @@ function Equipements({ match }) {
                   Pannes
                 </a>
               </li>
-              <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
+              <li className="flex-auto text-center">
                 <a
                   className={
-                    "text-lg font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal " +
+                    "text-lg font-bold uppercase px-5 py-3 shadow-lg block leading-normal " +
                     (openTab === 3
                       ? "text-white bg-" + color + "-600"
                       : "text-" + color + "-600 bg-white")
@@ -303,14 +303,14 @@ function Equipements({ match }) {
               </li>
             </ul>
             
-                <div className="tab-content tab-space h-screen">
+                <div className={" tab-content tab-space p-2 h-screen"+ (openTab===1 || openTab===2||openTab===3 ?" bg-gray-50  border border-green-600": " ")}>
                   <div
                     className={
                       openTab === 1 ? "flex flex-col items-center " : "hidden"
                     }
                     id="link1"
                   >
-                    <div className="relative mx-auto py-3 px-4 rounded-lg sm:w-3/12 shadow bg-white ">
+                    <div className="relative my-2 mx-auto py-3 px-4 rounded-lg sm:w-3/12 shadow bg-white ">
                       <svg
                         className="w-5 h-5 absolute text-gray-500 left-4 top-3"
                         xmlns="http://www.w3.org/2000/svg"
@@ -332,8 +332,8 @@ function Equipements({ match }) {
                         onChange={(event) => setFindKey(event.target.value)}
                       />
                     </div>
-                    <div className=" sm:w-full py-4 ">
-                      <h2 className="text-center text-white text-lg">
+                    <div className=" sm:w-full  ">
+                      <h2 className="text-center text-lg">
                         {" "}
                         Liste des Equipements
                       </h2>
@@ -662,7 +662,7 @@ function Equipements({ match }) {
                     }
                     id="link2"
                   >
-                    <div className="relative mx-auto py-3 px-4 rounded-lg sm:w-3/12 shadow bg-white ">
+                    <div className="relative my-2 mx-auto py-3 px-4 rounded-lg sm:w-3/12 shadow bg-white ">
                       <svg
                         className="w-5 h-5 absolute text-gray-500 left-4 top-3"
                         xmlns="http://www.w3.org/2000/svg"
@@ -685,7 +685,7 @@ function Equipements({ match }) {
                       />
                     </div>
                     <div className=" sm:w-full py-4">
-                      <h2 className="text-center text-white text-lg">
+                      <h2 className="text-center  text-lg">
                         {" "}
                         Les Pannes
                       </h2>
@@ -805,7 +805,7 @@ function Equipements({ match }) {
                     }
                     id="link3"
                   >
-                    <div className="relative mx-auto py-3 px-4 rounded-lg sm:w-3/12 shadow bg-white ">
+                    <div className="relative my-2 mx-auto py-3 px-4 rounded-lg sm:w-3/12 shadow bg-white ">
                       <svg
                         className="w-5 h-5 absolute text-gray-500 left-4 top-3"
                         xmlns="http://www.w3.org/2000/svg"
@@ -828,7 +828,7 @@ function Equipements({ match }) {
                       />
                     </div>
                     <div className="sm:w-full py-4">
-                      <h2 className="text-center text-white text-lg">
+                      <h2 className="text-center  text-lg">
                         {" "}
                         Les Réparations
                       </h2>
@@ -842,7 +842,7 @@ function Equipements({ match }) {
                           Ajouter Equipement
                         </button> */}
                       </div>
-                      <table className="w-full border-collapse">
+                      <table className="table-auto w-full border-collapse">
                         <thead>
                           <tr className="uppercase bg-gray-300">
                             <th className="py-4 px-2 border-r-2 border-grey-800">
