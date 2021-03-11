@@ -110,9 +110,9 @@ function Comite() {
   };
   return (
     <>
-      <div className=" bg-gray-800 antialiased font-quicksand w-full text-white">
-        <form onSubmit={handleSubmit(onSubmit)} class=" mx-auto space-y-5 p-10">
-          <h2 className="text-center uppercase text-xl">Ajout Comite</h2>
+      <div className=" bg-gray-800 antialiased  flex flex-col  items-center justify-center  font-quicksand w-full">
+        <form onSubmit={handleSubmit(onSubmit)} className=" bg-gray-200 sm:w-11/12 rounded-lg m-4 p-10">
+          <h2 className="text-center  font-bold uppercase text-xl mb-2">Ajout Comite</h2>
           <div className="flex flex-col space-y-8 sm:flex-row sm:mx-auto sm:space-x-12 sm:space-y-0  ">
             {" "}
             <div className="flex flex-col space-y-4 sm:w-6/12">
@@ -277,7 +277,7 @@ function Comite() {
                 </div>
               )}
             </div>
-            <div className="flex flex-col space-y-4 sm:w-6/12">
+            <div className="flex flex-col space-y-4 sm:w-8/12">
               <div>
                 {" "}
                 <label> Village/Quartier</label>
@@ -374,7 +374,7 @@ function Comite() {
             <div className="flex flex-col space-y-4 sm:w-6/12">
               <div className="flex flex-col space-y-40">
                 <div className=" flex flex-col space-y-5 justify-center items-center sm:justify-start sm:items-start ">
-                  <h2>Liste Membres du comité directeur</h2>{" "}
+                  <h2>Membres du comité directeur</h2>{" "}
                   <div className="w-full">
                     <input
                       placeholder="Prenom"
@@ -480,7 +480,7 @@ function Comite() {
             <div className="flex flex-col space-y-4 sm:w-6/12">
               <div className=" flex flex-col space-y-5 justify-center items-center sm:justify-start sm:items-start ">
                 {" "}
-                <h2>Liste Membres du bureau </h2>
+                <h2>Membres du bureau </h2>
                 <div className="w-full">
                   <input
                     class=" text-gray-900 py-2 rounded px-4 w-full focus:outline-none focus:border-green-400  border-2 "

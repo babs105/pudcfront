@@ -74,9 +74,9 @@ function AddEquipment({ match }) {
   let idComite = match.params.idComite;
   return (
     <>
-      <div className=" bg-gray-800 flex flex-col justify-center  antialiased font-quicksand w-full  text-white">
-        <form onSubmit={handleSubmit(onSubmit)} className="h-full p-10">
-          <h2 className="text-center uppercase text-xl m-3">
+      <div className=" bg-gray-800 flex flex-col  items-center justify-center  antialiased font-quicksand w-full ">
+        <form onSubmit={handleSubmit(onSubmit)} className=" bg-gray-200 sm:w-6/12 rounded-lg p-3 m-2">
+          <h2 className="text-center font-bold uppercase text-xl m-3">
             Ajout Equipement
           </h2>
           <div className="flex flex-col space-y-8 sm:flex-row sm:justify-center sm:space-x-12 sm:space-y-0  ">
