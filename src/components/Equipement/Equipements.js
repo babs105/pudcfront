@@ -303,7 +303,7 @@ function Equipements({ match }) {
               </li>
             </ul>
             
-                <div className={" tab-content tab-space p-2 h-screen"+ (openTab===1 || openTab===2||openTab===3 ?" bg-gray-50  border border-green-600": " ")}>
+                <div className={" h-screen px-3 "+ (openTab===1 || openTab===2||openTab===3 ?" bg-gray-100  border border-green-600": " ")}>
                   <div
                     className={
                       openTab === 1 ? "flex flex-col items-center " : "hidden"
