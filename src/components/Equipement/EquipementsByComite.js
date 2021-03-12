@@ -375,7 +375,7 @@ function Equipements({ match }) {
                             )
                             .map((row) => (
                               <tr
-                                className="text-center  hover:bg-gray-100 "
+                                className="text-center  hover:bg-green-100  "
                                 key={row.id}
                               >
                                 <td className="py-4 px-2 border-b border-grey-light">
@@ -699,7 +699,7 @@ function Equipements({ match }) {
                           Ajouter Equipement
                         </button> */}
                       </div>
-                      <table className="table-auto w-full border-collapse">
+                      <table className="min-h-500 w-full border-collapse" style={{height:'10rem'}}>
                         <thead >
                           <tr className="uppercase bg-gray-300">
                             <th className="py-4 px-2 border-r-2 border-grey-800">
@@ -723,7 +723,7 @@ function Equipements({ match }) {
                             </th>
                           </tr>
                         </thead>
-                        <tbody className="bg-white">
+                        <tbody className="bg-white" >
                           {search(pannes)
                             .slice(
                               currentPage * nombrePerPage - nombrePerPage,
@@ -731,7 +731,7 @@ function Equipements({ match }) {
                             )
                             .map((row) => (
                               <tr
-                                className="text-center  hover:bg-gray-100 "
+                                className="text-center  hover:bg-green-100 "
                                 key={row.id}
                               >
                                 <td className="py-4 px-2 border-b border-grey-light">
@@ -866,7 +866,7 @@ function Equipements({ match }) {
                             </th>
                           </tr>
                         </thead>
-                        <tbody className="bg-white">
+                        <tbody className="bg-white ">
                           {search(reparations)
                             .slice(
                               currentPage * nombrePerPage - nombrePerPage,
@@ -874,7 +874,7 @@ function Equipements({ match }) {
                             )
                             .map((row) => (
                               <tr
-                                className="text-center  hover:bg-gray-100 "
+                                className="text-center  hover:bg-green-100  "
                                 key={row.id}
                               >
                                 <td className="py-4 px-2 border-b border-grey-light">

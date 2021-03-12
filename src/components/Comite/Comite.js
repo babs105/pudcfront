@@ -427,7 +427,7 @@ function Comite() {
                     disabled={
                       nomP === "" || prenomP === "" || profession === ""
                     }
-                    className=" bg-green-500  hover:bg-green-800 focus:outline-none p-2 rounded-lg flex justify-center items-center "
+                    className=" bg-green-500  text-white hover:bg-green-800 focus:outline-none p-2 rounded-lg flex justify-center items-center "
                     onClick={addListPresence}
                   >
                     <svg
@@ -446,7 +446,7 @@ function Comite() {
                     </svg>{" "}
                     Ajouter Liste
                   </button>
-                  <ul className="mb-50 divide-y-2 divide-white w-full">
+                  <ul className="mb-50 divide-y-2 divide-green-500 w-full">
                     {listePresence.map((present, index) => (
                       <div className="flex justify-between space-y-3 items-center">
                         {" "}
@@ -459,7 +459,7 @@ function Comite() {
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
-                          className="w-5 h-5 cursor-pointer"
+                          className="w-5 h-5 cursor-pointer text-red-500"
                           onClick={() => {
                             removeItemListePresence(present);
                           }}
@@ -550,7 +550,7 @@ function Comite() {
                 </div>
                 <button
                   disabled={nom === "" || prenom === "" || poste === ""}
-                  className=" bg-green-500  hover:bg-green-800 p-2 focus:outline-none rounded-lg flex justify-center items-center "
+                  className=" bg-green-500 text-white hover:bg-green-800 p-2 focus:outline-none rounded-lg flex justify-center items-center "
                   onClick={addMember}
                 >
                   <svg
@@ -569,7 +569,7 @@ function Comite() {
                   </svg>
                   Ajouter Liste
                 </button>
-                <ul className=" divide-y-2 divide-white w-full">
+                <ul className=" divide-y-2  divide-green-500 w-full">
                   {listeMembre.map((member, index) => (
                     <div className="flex justify-between space-y-3 items-center">
                       <li key={uuidv4()}>
@@ -581,7 +581,7 @@ function Comite() {
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
-                        className="w-5 h-5 cursor-pointer "
+                        className="w-5 h-5 cursor-pointer text-red-500"
                         onClick={() => {
                           removeItemListeMembre(member);
                         }}

@@ -27,7 +27,7 @@ function ComiteDetails({ match }) {
   let color = "green";
   return (
     <>
-      <div className="bg-gray-800 flex flex-col space-y-14 text-white  font-quicksand w-full">
+      <div className="bg-gray-800 flex flex-col space-y-14 text-white pb-4  font-quicksand w-full">
         <div className=" py-7  w-10/12  mx-auto flex justify-between">
           <ul>
             <li>Nom Comité : {comite.nomComite}</li>
@@ -70,6 +70,19 @@ function ComiteDetails({ match }) {
             }}
           >
             Equipements
+          </button>
+          <button
+            className=" p-2 bg-green-500  rounded-lg focus:outline-none"
+            onClick={() => {
+              console.log(comite.nomComite);
+              let comiteParam = {
+                idComite: idComite,
+                nomComite: comite.nomComite,
+              };
+              history.push(`/formation/${JSON.stringify(comiteParam)}`);
+            }}
+          >
+            Formations
           </button>
           <button
             className=" p-2 bg-green-500  rounded-lg focus:outline-none"

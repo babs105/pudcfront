@@ -73,9 +73,22 @@ function Navigation() {
             </Link>
           </li>
           <li className={classes.menuItem} onClick={closeMobileMenu}>
-            <Link to="/panne" className={classes.menuLink}>
+            <Link to="/equipement-all" className={classes.menuLink}>
+              {" "}
+              Equipement
+            </Link>
+          </li>
+          <li className={classes.menuItem} onClick={closeMobileMenu}>
+            <Link to="/panne-all" className={classes.menuLink}>
               {" "}
               Panne
+            </Link>
+          </li>
+
+          <li className={classes.menuItem} onClick={closeMobileMenu}>
+            <Link to="/formation-all" className={classes.menuLink}>
+              {" "}
+             Formation
             </Link>
           </li>
           {/* <li className={classes.menuItem} onClick={closeMobileMenu}>
@@ -112,8 +125,18 @@ function Navigation() {
             </Link>
           </li>
           <li className={classes.menuItem}>
-            <Link to="/panne" className={classes.menuLink}>
+            <Link to="/equipement-all" className={classes.menuLink}>
+              Equipement
+            </Link>
+          </li>
+          <li className={classes.menuItem}>
+            <Link to="/panne-all" className={classes.menuLink}>
               Panne
+            </Link>
+          </li>
+          <li className={classes.menuItem}>
+            <Link to="/formation-all" className={classes.menuLink}>
+            Formation
             </Link>
           </li>
           {/* <li className={classes.menuItem}>
