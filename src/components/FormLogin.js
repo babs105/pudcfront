@@ -5,10 +5,10 @@ import { userService } from "../service/userService";
 
 const classes = {
   formContainer:
-    "font-quicksand bg-gray-900 flex flex-col items-center justify-center w-full h-screen  ",
-  headline: "pb-1 font-bold text-xl text-gray-900",
+    "font-quicksand bg-gray-900 flex flex-col items-center  space-y-2 justify-center w-full h-screen  ",
+  headline: "pb-1 font-bold text-xl text-green-600",
   form:
-    " text-gray-200 bg-gray-200 py-10 rounded-xl sm:p-10 sm:max-w-md  w-full  flex flex-col justify-center items-center ",
+    " text-gray-200 bg-gray-200 py-10 border-green-600 border-4 rounded-xl sm:p-10 sm:max-w-md  w-full  flex flex-col justify-center items-center ",
   wrapperBlocInput:
     "w-full  px-4 my-4 flex flex-col justify-between items-center",
   blocInput: "flex flex-col  my-4 justify-center w-full items-center ",
@@ -49,6 +49,7 @@ function FormLogin({ setOpenLogin }) {
   console.log(watch("username"));
   return (
     <div className={classes.formContainer}>
+       <img className="w-20 h-20 rounded-lg" src="/images/logo_pudc.jpeg" alt="logo" />
       
       <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
       <h2 className={classes.headline}>Connexion</h2>
