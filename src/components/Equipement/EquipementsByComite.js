@@ -29,10 +29,14 @@ function Equipements({ match }) {
   const [pannes, setPannes] = useState([]);
   const [reparations, setReparations] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [loading, setLoading] = useState(false);
+  const [loadingEquipement, setLoadingEquipement] = useState(false);
+  const [loadingPanne, setLoadingPanne] = useState(false);
+  const [loadingReparation, setLoadingReparation] = useState(false);
+  const [loadingDeclarePanne, setLoadingDeclarePanne] = useState(false);
+  const [loadingCloturePanne, setLoadingCloturePanne] = useState(false);
   const [nombrePerPage, setNombrePerPage] = useState(5);
   const [findKey, setFindKey] = useState("");
-  const [logging, setlogging] = useState(false);
+  
   const [messagePanne, setMessagePanne] = useState("");
   const [messageMarche, setMessageMarche] = useState("");
   
@@ -58,11 +62,12 @@ function Equipements({ match }) {
       idComite: idComite,
       statutEquipment: "EN PANNE",
     };
+    setLoadingDeclarePanne(true)
     equipementService
       .declarePanneEquipment(equipment)
       .then((res) => {
-        setlogging(false);
-        setMessagePanne("Equipement en Panne");
+        setLoadingDeclarePanne(false);
+        setMessagePanne("Equipement déclaré Panne");
         getEquipmentByIdComite();
         getPanneByIdComite();
         getReparationByIdComite();
@@ -71,7 +76,7 @@ function Equipements({ match }) {
       })
       .catch((e) => {
       
-        setlogging(false);
+        setLoadingDeclarePanne(false);
         setMessagePanne("Echec change Statut ressayez");
         console.log(e);
       });
@@ -88,12 +93,13 @@ function Equipements({ match }) {
       idComite: idComite,
       statutEquipment: "EN MARCHE",
     };
+    setLoadingCloturePanne(true);
     console.log("cloture panne");
     equipementService
       .cloturerPanneEquipment(equipment)
       .then((res) => {
-        setlogging(false);
-        setMessageMarche("Equipement en Marche");
+        setLoadingCloturePanne(false);
+        setMessageMarche("Equipement Réparé");
         getEquipmentByIdComite();
         getPanneByIdComite();
         getReparationByIdComite();
@@ -101,32 +107,32 @@ function Equipements({ match }) {
         console.log(res);
       })
       .catch((e) => {
-        setlogging(false);
+        setLoadingCloturePanne(false);
         setMessageMarche("Echec change Statut ressayez");
         console.log(e);
       });
   };
   const getEquipmentByIdComite = () => {
-    setLoading(true);
+    setLoadingEquipement(true);
     equipementService.getEquipmentByIdComite(idComite).then((res) => {
-      // setLoading(false);
+       setLoadingEquipement(false);
       console.log(res);
       setEquipements(res);
     });
   };
   const getPanneByIdComite = () => {
-    setLoading(true);
+    setLoadingPanne(true);
     panneService.getPanneByIdComite(idComite).then((res) => {
-      // setLoading(false);
+       setLoadingPanne(false);
       console.log(res);
       setPannes(res);
     });
   };
 
   const getReparationByIdComite = () => {
-    setLoading(true);
+    setLoadingReparation(true);
     reparationService.getReparationByIdComite(idComite).then((res) => {
-      // setLoading(false);
+       setLoadingReparation(false);
       console.log(res);
       setReparations(res);
     });
@@ -332,14 +338,14 @@ function Equipements({ match }) {
                         onChange={(event) => setFindKey(event.target.value)}
                       />
                     </div>
-                    <div className=" sm:w-full  ">
+                    <div className=" w-full  ">
                       <h2 className="text-center text-lg">
                         {" "}
                         Liste des Equipements
                       </h2>
-                      <div className=" flex flex-col items-center sm:flex-row sm:space-x-4 text-white">
+                      <div className=" flex flex-col items-center  sm:flex-row sm:space-x-4 text-white">
                         <button
-                          className="bg-green-600 p-2 rounded-lg mb-2"
+                          className="bg-green-600 shadow-lg p-2 rounded-lg mb-2"
                           onClick={() => {
                             history.push(`/add-equipment/${idComite}`);
                           }}
@@ -347,7 +353,41 @@ function Equipements({ match }) {
                           Ajouter Equipement
                         </button>
                       </div>
-                      <table className=" table-auto  w-full border-collapse">
+                      {loadingEquipement ? (
+                 
+                 
+                 <div className=" text-green-600 text-xl bg-gray-50  w-full flex flex-row justify-center items-center 
+                 rounded-lg py-3 px-12 focus:outline-none">
+                     <svg
+                className="animate-spin -ml-1 mr-3 h-10 w-10 "
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>
+              Chargement...
+              
+            
+         
+              
+            </div>
+            
+            
+          ):
+                      <table className="w-full border-collapse">
                         <thead>
                           <tr className="uppercase  bg-gray-300">
                             <th className="py-4 px-2 border-r-2 border-grey-800">
@@ -355,6 +395,9 @@ function Equipements({ match }) {
                             </th>
                             <th className="py-4 px-2 border-r-2 border-grey-800">
                               Date Réception
+                            </th>
+                            <th className="py-4 px-2 border-r-2 border-grey-800">
+                            Equipement_ID
                             </th>
                             <th className="py-4 px-2 border-r-2 border-grey-800">
                               Type d'équipement
@@ -383,6 +426,9 @@ function Equipements({ match }) {
                                 </td>
                                 <td className="py-4 px-2 border-b border-grey-light">
                                   {row.dateReception}
+                                </td>
+                                <td className="py-4 px-2 border-b border-grey-light">
+                                  {row.nameEquipement}
                                 </td>
                                 <td className="py-4 px-2 border-b border-grey-light">
                                   {row.typeEquipement}
@@ -453,6 +499,7 @@ function Equipements({ match }) {
                             ))}
                         </tbody>
                       </table>
+                }
                     </div>
                     <Pagination
                       nombreTotal={search(equipements).length}
@@ -547,9 +594,38 @@ function Equipements({ match }) {
                                     Valider
                                   </button>
                                 </div>
-                                <p className="text-center font-semibold text-orange-300">
+            {loadingDeclarePanne?  
+             <div className=" text-green-600 text-lg bg-gray-50  w-full flex flex-row justify-center items-center 
+                 rounded-lg py-3 px-12 focus:outline-none">
+                     <svg
+                className="animate-spin -ml-1 mr-3 h-10 w-10 "
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>
+              Chargement...
+              
+            
+         
+              
+            </div>:<p className="text-center font-semibold py-2 text-green-600">
                                   {messagePanne}
-                                </p>
+                                </p>}
+                                
                               </div>
                             </form>
                           </div>
@@ -645,9 +721,38 @@ function Equipements({ match }) {
                                     Valider
                                   </button>
                                 </div>
-                                <p className="text-center font-semibold text-orange-300">
+                                {loadingDeclarePanne?  
+             <div className=" text-green-600 text-lg bg-gray-50  w-full flex flex-row justify-center items-center 
+                 rounded-lg py-3 px-12 focus:outline-none">
+                     <svg
+                className="animate-spin -ml-1 mr-3 h-10 w-10 "
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>
+              Chargement...
+              
+            
+         
+              
+            </div>:  <p className="text-center font-semibold text-green-600">
                                   {messageMarche}
-                                </p>
+                                </p>}
+                              
                               </div>
                             </form>
                           </div>
@@ -684,7 +789,7 @@ function Equipements({ match }) {
                         onChange={(event) => setFindKey(event.target.value)}
                       />
                     </div>
-                    <div className=" sm:w-full py-4">
+                    <div className=" w-full   py-4">
                       <h2 className="text-center  text-lg">
                         {" "}
                         Les Pannes
@@ -699,7 +804,40 @@ function Equipements({ match }) {
                           Ajouter Equipement
                         </button> */}
                       </div>
-                      <table className="min-h-500 w-full border-collapse" style={{height:'10rem'}}>
+                      {loadingPanne ? (
+                 
+                 
+                 <div className=" text-green-600 text-xl bg-gray-50  w-full flex flex-row justify-center items-center 
+                 rounded-lg py-3 px-12 focus:outline-none">
+                     <svg
+                className="animate-spin -ml-1 mr-3 h-10 w-10 "
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>
+              Chargement...
+              
+            
+         
+              
+            </div>
+            
+            
+          ):     <table className="min-h-500 w-full border-collapse">
                         <thead >
                           <tr className="uppercase bg-gray-300">
                             <th className="py-4 px-2 border-r-2 border-grey-800">
@@ -709,10 +847,10 @@ function Equipements({ match }) {
                               Date Déclaration
                             </th>
                             <th className="py-4 px-2 border-r-2 border-grey-800">
-                              Type d'équipement
+                            Equipement_ID
                             </th>
                             <th className="py-4 px-2 border-r-2 border-grey-light">
-                              Statut
+                            Type d'équipement
                             </th>
                             <th className="py-4 px-2 border-r-2 border-grey-light">
                               Type de Panne
@@ -741,21 +879,12 @@ function Equipements({ match }) {
                                   {row.dateDeclaration}
                                 </td>
                                 <td className="py-4 px-2 border-b border-grey-light">
-                                  {row.typeEquipement}
+                                  {  row.nameEquipement}
                                 </td>
                                 <td className="py-4 px-2 border-b border-grey-light">
-                                  {
-                                    row.statutEquipement
-                                    // <a
-                                    //   download={row.name}
-                                    //   href={`data:application/pdf;base64,${row.photoPresidente}`}
-                                    // >
-                                    //   <img
-                                    //     class=" object-fill w-20 h-10"
-                                    //     src={`data:application/pdf;base64,${row.photoPresidente}`}
-                                    //     alt="doc"
-                                    //   />
-                                    // </a>
+                                  {row.typeEquipement
+                                   
+
                                   }
                                 </td>
                                 <td className="py-4 px-2 border-b border-grey-light">
@@ -790,7 +919,7 @@ function Equipements({ match }) {
                               </tr>
                             ))}
                         </tbody>
-                      </table>
+                      </table>}
                     </div>
                     <Pagination
                       nombreTotal={search(pannes).length}
@@ -827,7 +956,7 @@ function Equipements({ match }) {
                         onChange={(event) => setFindKey(event.target.value)}
                       />
                     </div>
-                    <div className="sm:w-full py-4">
+                    <div className="w-full   py-4">
                       <h2 className="text-center  text-lg">
                         {" "}
                         Les Réparations
@@ -842,7 +971,40 @@ function Equipements({ match }) {
                           Ajouter Equipement
                         </button> */}
                       </div>
-                      <table className="table-auto w-full border-collapse">
+                      {loadingReparation ? (
+                 
+                 
+                 <div className=" text-green-600 text-xl bg-gray-50  w-full flex flex-row justify-center items-center 
+                 rounded-lg py-3 px-12 focus:outline-none">
+                     <svg
+                className="animate-spin -ml-1 mr-3 h-10 w-10 "
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>
+              Chargement...
+              
+            
+         
+              
+            </div>
+            
+            
+          ):     <table className="table-auto w-full border-collapse">
                         <thead>
                           <tr className="uppercase bg-gray-300">
                             <th className="py-4 px-2 border-r-2 border-grey-800">
@@ -852,10 +1014,10 @@ function Equipements({ match }) {
                               Date de Clôture
                             </th>
                             <th className="py-4 px-2 border-r-2 border-grey-800">
-                              Type d'équipement
+                            Equipement_ID
                             </th>
                             <th className="py-4 px-2 border-r-2 border-grey-light">
-                              Statut
+                            Type d'équipement
                             </th>
                             <th className="py-4 px-2 border-r-2 border-grey-light">
                               Type de Panne
@@ -884,21 +1046,12 @@ function Equipements({ match }) {
                                   {row.dateCloture}
                                 </td>
                                 <td className="py-4 px-2 border-b border-grey-light">
-                                  {row.typeEquipement}
+                                { row.nameEquipement}
                                 </td>
                                 <td className="py-4 px-2 border-b border-grey-light">
                                   {
-                                    row.statutEquipement
-                                    // <a
-                                    //   download={row.name}
-                                    //   href={`data:application/pdf;base64,${row.photoPresidente}`}
-                                    // >
-                                    //   <img
-                                    //     class=" object-fill w-20 h-10"
-                                    //     src={`data:application/pdf;base64,${row.photoPresidente}`}
-                                    //     alt="doc"
-                                    //   />
-                                    // </a>
+                                    row.typeEquipement
+                             
                                   }
                                 </td>
                                 <td className="py-4 px-2 border-b border-grey-light">
@@ -954,7 +1107,7 @@ function Equipements({ match }) {
                               </tr>
                             ))}
                         </tbody>
-                      </table>
+                      </table>}
                     </div>
                     <Pagination
                       nombreTotal={search(reparations).length}

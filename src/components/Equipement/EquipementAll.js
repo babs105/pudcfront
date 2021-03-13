@@ -15,7 +15,7 @@ function EquipementAll() {
   let history = useHistory();
 
   useEffect(() => {
-    getAllEquipment();
+     getAllEquipment();
   }, []);
 
   const getAllEquipment= () => {
@@ -32,10 +32,16 @@ function EquipementAll() {
         row.nomComite.toString().toLowerCase().indexOf(findKey.toLowerCase()) >
         -1
         ||
-      row.statutEquipement
+      row.typeEquipement
         .toString()
         .toLowerCase()
         .indexOf(findKey.toLowerCase()) > -1
+        ||
+        row.statutEquipement
+
+          .toString()
+          .toLowerCase()
+          .indexOf(findKey.toLowerCase()) > -1
     );
 
     // const columns = rows[0] && Object.keys(rows[0]);
@@ -100,6 +106,40 @@ function EquipementAll() {
               Ajouter Comité
             </button>
           </div> */}
+          {loading ? (
+                 
+                 
+                 <div className=" text-green-600 text-xl bg-gray-50  w-full flex flex-row justify-center items-center 
+                 rounded-lg py-3 px-12 focus:outline-none">
+                     <svg
+                className="animate-spin -ml-1 mr-3 h-10 w-10 "
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>
+              Chargement...
+              
+            
+         
+              
+            </div>
+            
+            
+          ):
           <table className="table-auto rounded-lg shadow w-full border-collapse">
             <thead>
               <tr className="uppercase bg-gray-300">
@@ -111,6 +151,9 @@ function EquipementAll() {
                   Date Réception
                 </th>
                 <th className="py-4 px-2 border-r-2 border-grey-light">
+                Equipement_ID
+                </th>
+                <th className="py-4 px-2 border-r-2 border-grey-light">
                 Type d'équipement
                 </th>
                 <th className="py-4 px-2 border-r-2 border-grey-light">
@@ -120,83 +163,87 @@ function EquipementAll() {
                 <th className="py-4 px-2  border-grey-light">Action</th>
               </tr>
             </thead>
-            <tbody className="bg-white">
-              {search(equipements)
-                .slice(
-                  currentPage * nombrePerPage - nombrePerPage,
-                  currentPage * nombrePerPage
-                )
-                .map((row) => (
-                  <tr className="text-center  hover:bg-gray-100 " key={row.id}>
-                    <td className="py-4 px-2 border-b border-grey-light">
-                      {i++}
-                    </td>
-                    <td className="py-4 px-2 border-b border-grey-light">
-                      {row.nomComite}
-                    </td>
-                    <td className="py-4 px-2 border-b border-grey-light">
-                      {row.dateReception}
-                    </td>
-                    <td className="py-4 px-2 border-b border-grey-light">
-                      {
-                        row.typeEquipement
-                        // <a
-                        //   download={row.name}
-                        //   href={`data:application/pdf;base64,${row.photoPresidente}`}
-                        // >
-                        //   <img
-                        //     class=" object-fill w-20 h-10"
-                        //     src={`data:application/pdf;base64,${row.photoPresidente}`}
-                        //     alt="doc"
-                        //   />
-                        // </a>
-                      }
-                    </td>
-                    <td className="py-4 px-2 border-b border-grey-light">
-                      {
-                        row.statutEquipement
-                        // <a
-                        //   download={row.name}
-                        //   href={`data:application/pdf;base64,${row.photoPresidente}`}
-                        // >
-                        //   <img
-                        //     class=" object-fill w-20 h-10"
-                        //     src={`data:application/pdf;base64,${row.photoPresidente}`}
-                        //     alt="doc"
-                        //   />
-                        // </a>
-                      }
-                    </td>
-                    <td className="py-4 px-2 border-b border-grey-light">
-                      <svg
-                        onClick={() => {
-                          console.log(row.id);
-                          history.push(`/comite-show/${row.id}`);
-                        }}
-                        className="w-5 h-5 cursor-pointer"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                        />
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                        />
-                      </svg>
-                    </td>
-                  </tr>
-                ))}
+            <tbody className="bg-white ">  
+              
+            {  search(equipements)
+        .slice(
+          currentPage * nombrePerPage - nombrePerPage,
+          currentPage * nombrePerPage
+        )
+        .map((row) => (
+          <tr className="text-center  hover:bg-gray-100 " key={row.id}>
+            <td className="py-4 px-2 border-b border-grey-light">
+              {i++}
+            </td>
+            <td className="py-4 px-2 border-b border-grey-light">
+              {row.nomComite}
+            </td>
+            <td className="py-4 px-2 border-b border-grey-light">
+              {row.dateReception}
+            </td>
+            <td className="py-4 px-2 border-b border-grey-light">
+              {row.nameEquipement}
+            </td>
+            <td className="py-4 px-2 border-b border-grey-light">
+              {
+                row.typeEquipement
+                // <a
+                //   download={row.name}
+                //   href={`data:application/pdf;base64,${row.photoPresidente}`}
+                // >
+                //   <img
+                //     class=" object-fill w-20 h-10"
+                //     src={`data:application/pdf;base64,${row.photoPresidente}`}
+                //     alt="doc"
+                //   />
+                // </a>
+              }
+            </td>
+            <td className="py-4 px-2 border-b border-grey-light">
+              {
+                row.statutEquipement
+                // <a
+                //   download={row.name}
+                //   href={`data:application/pdf;base64,${row.photoPresidente}`}
+                // >
+                //   <img
+                //     class=" object-fill w-20 h-10"
+                //     src={`data:application/pdf;base64,${row.photoPresidente}`}
+                //     alt="doc"
+                //   />
+                // </a>
+              }
+            </td>
+            <td className="py-4 px-2 border-b border-grey-light">
+              <svg
+                onClick={() => {
+                  console.log(row.id);
+                  // history.push(`/comite-show/${row.id}`);
+                }}
+                className="w-5 h-5 cursor-pointer"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                />
+              </svg>
+            </td>
+          </tr>
+        )) }
             </tbody>
-          </table>
+          </table>}
         </div>
         <Pagination
           nombreTotal={search(equipements).length}

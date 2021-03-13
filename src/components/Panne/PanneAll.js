@@ -37,6 +37,11 @@ function PanneAll() {
         .toString()
         .toLowerCase()
         .indexOf(findKey.toLowerCase()) > -1
+        ||
+        row.nameEquipement
+          .toString()
+          .toLowerCase()
+          .indexOf(findKey.toLowerCase()) > -1
     );
 
     // const columns = rows[0] && Object.keys(rows[0]);
@@ -112,7 +117,10 @@ function PanneAll() {
                   Date Déclaration
                 </th>
                 <th className="py-4 px-2 border-r-2 border-grey-light">
-                Type d'équipement
+                Equipement_ID
+                </th>
+                <th className="py-4 px-2 border-r-2 border-grey-light">
+                Type Equipement
                 </th>
                 <th className="py-4 px-2 border-r-2 border-grey-light">
                 Type Panne
@@ -137,6 +145,9 @@ function PanneAll() {
                     </td>
                     <td className="py-4 px-2 border-b border-grey-light">
                       {row.dateDeclaration}
+                    </td>
+                    <td className="py-4 px-2 border-b border-grey-light">
+                      {row.nameEquipement}
                     </td>
                     <td className="py-4 px-2 border-b border-grey-light">
                       {
@@ -172,7 +183,7 @@ function PanneAll() {
                       <svg
                         onClick={() => {
                           console.log(row.id);
-                          history.push(`/comite-show/${row.id}`);
+                          // history.push(`/comite-show/${row.id}`);
                         }}
                         className="w-5 h-5 cursor-pointer"
                         xmlns="http://www.w3.org/2000/svg"

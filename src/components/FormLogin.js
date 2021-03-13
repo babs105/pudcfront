@@ -5,13 +5,13 @@ import { userService } from "../service/userService";
 
 const classes = {
   formContainer:
-    "font-quicksand bg-gray-900 flex  flex-col items-center justify-center w-full h-screen  ",
-  headline: "pb-1 font-bold text-xl text-gray-400",
+    "font-quicksand bg-gray-900 flex flex-col items-center justify-center w-full h-screen  ",
+  headline: "pb-1 font-bold text-xl text-gray-900",
   form:
-    "max-w-md w-full text-gray-200 mt-2 px-8 md:px-0 flex flex-col justify-center items-center ",
+    " text-gray-200 bg-gray-200 py-10 rounded-xl sm:p-10 sm:max-w-md  w-full  flex flex-col justify-center items-center ",
   wrapperBlocInput:
-    "w-full flex flex-col sm:flex-row sm:space-x-8 justify-between items-center",
-  blocInput: "flex flex-col justify-center w-full items-center h-full",
+    "w-full  px-4 my-4 flex flex-col justify-between items-center",
+  blocInput: "flex flex-col  my-4 justify-center w-full items-center ",
   inputContainer: "flex flex-col w-full justify-center",
   label: " ",
   input:
@@ -49,8 +49,9 @@ function FormLogin({ setOpenLogin }) {
   console.log(watch("username"));
   return (
     <div className={classes.formContainer}>
-      <h2 className={classes.headline}>Connexion</h2>
+      
       <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
+      <h2 className={classes.headline}>Connexion</h2>
         <div className={classes.wrapperBlocInput}>
           <div className={classes.blocInput}>
             <div className={classes.inputContainer}>
@@ -88,10 +89,9 @@ function FormLogin({ setOpenLogin }) {
               )}
             </div>
           </div>
-        </div>
-        {logging ? (
+          {logging ? (
           <button
-            className="bg-green-600 text-sm mt-4 flex flex-row items-center 
+            className="bg-green-600 text-sm  mt-4 flex flex-row items-center 
                       rounded-lg py-3 px-12 w-full focus:outline-none hover:bg-orange-500"
             type="submit"
           >
@@ -120,7 +120,7 @@ function FormLogin({ setOpenLogin }) {
         ) : (
           <button
             className="bg-green-600 text-sm mt-4 
-                      rounded-lg py-3 px-12 w-full focus:outline-none hover:bg-green-700"
+                      rounded-lg py-3 w-full focus:outline-none hover:bg-green-700"
             type="submit"
           >
             SE CONNECTER
@@ -151,6 +151,8 @@ function FormLogin({ setOpenLogin }) {
             </svg>
           </div>
         )}
+        </div>
+      
       </form>
     </div>
   );

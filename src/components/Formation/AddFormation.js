@@ -73,14 +73,14 @@ function AddFormation({ match }) {
   let idComite = match.params.idComite;
   return (
     <>
-      <div className=" bg-gray-800 flex flex-col  items-center justify-center  antialiased font-quicksand w-full ">
-        <form onSubmit={handleSubmit(onSubmit)} className=" bg-gray-200 sm:w-8/12 rounded-lg py-5 px-20 m-4">
+      <div className=" bg-gray-800 flex flex-col items-center justify-start  antialiased font-quicksand w-full h-screen ">
+        <form onSubmit={handleSubmit(onSubmit)} className=" bg-gray-200  rounded-lg py-5 p-4 mt-2">
           <h2 className="text-center font-bold uppercase text-xl m-3">
             Ajout Formation
           </h2>
-          <div className="flex flex-col space-y-8 sm:flex-row sm:justify-center sm:space-x-12 sm:space-y-0  ">
+          <div className="flex flex-col space-y-8 sm:flex-row sm:justify-center sm:space-x-12 sm:space-y-0  px-4 ">
             {" "}
-            <div className="flex flex-col space-y-4 sm:w-6/12">
+            <div className="flex flex-col space-y-4">
               <div>
                 {" "}
                 <label> Date de la Formation</label>
@@ -90,7 +90,6 @@ function AddFormation({ match }) {
                   type="date"
                   name="dateFormation"
                 />
-                {dateFormation}
                 {errors.dateFormation && (
                   <span class="text-sm font-bold text-red-600 ">
                     Date Formation invalide
@@ -99,7 +98,7 @@ function AddFormation({ match }) {
               </div>
               <div>
                 {" "}
-                <label> Theme de la Formation</label>
+                <label> Thème de la Formation</label>
                 <input
                   className=" text-gray-900 py-2 rounded px-4 w-full focus:outline-none focus:border-green-400  border-2"
                   ref={register}
@@ -129,11 +128,11 @@ function AddFormation({ match }) {
                   </span>
                 )}
               </div>
-              <div>
+              <div className="flex justify-between items-center">
                 {" "}
-                <label>Durée de la Formation :</label>
+                <label>Durée de la Formation </label>
                 <input
-                  className=" text-gray-900 py-2 rounded px-4 w-full focus:outline-none focus:border-green-400  border-2"
+                  className=" text-gray-900 py-2 rounded px-4 w-1/2 focus:outline-none focus:border-green-400  border-2"
                   ref={register}
                   type="text"
                   name="dureeFormation"
@@ -145,11 +144,11 @@ function AddFormation({ match }) {
                   </span>
                 )}
               </div>
-              <div>
+              <div className="flex justify-between items-center">
                 {" "}
-                <label>Nombre de personnes formées :</label>
+                <label>Nombre personnes formées</label>
                 <input
-                  className=" text-gray-900 py-2 rounded px-4 w-full focus:outline-none focus:border-green-400  border-2"
+                  className=" text-gray-900 py-2 rounded px-4 w-1/2 focus:outline-none focus:border-green-400  border-2"
                   ref={register}
                   type="text"
                   name="personnesFormees"

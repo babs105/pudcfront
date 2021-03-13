@@ -27,8 +27,8 @@ function ComiteDetails({ match }) {
   let color = "green";
   return (
     <>
-      <div className="bg-gray-800 flex flex-col space-y-14 text-white pb-4  font-quicksand w-full">
-        <div className=" py-7  w-10/12  mx-auto flex justify-between">
+      <div className="bg-gray-800 flex flex-col justify-center items-center space-y-14 text-white pb-4  font-quicksand w-full">
+        <div className="w-10/12 flex flex-col space-y-10 justify-center items-center sm:flex-row sm:justify-between sm:space-x-10">
           <ul>
             <li>Nom Comité : {comite.nomComite}</li>
             <li>Date de Création : {comite.dateCreation}</li>
@@ -37,14 +37,14 @@ function ComiteDetails({ match }) {
             <li>Département : {comite.departement}</li>
             <li>Commune : {comite.commune}</li>
           </ul>
-          <div>
+          
             <img
               class=" object-fill w-40 h-40"
               src={`data:**/*;base64,${comite.photoPresidente}`}
               alt="presidente"
             />
-            <h2> Présidente</h2>
-          </div>
+            {/* <h2> Présidente</h2> */}
+          
           <ul>
             <li>Village/Quartier : {comite.quartierVillage}</li>
             <li>Nom du Chef de Village: {comite.nomChefVillage}</li>
@@ -57,9 +57,9 @@ function ComiteDetails({ match }) {
           </ul>
         </div>
 
-        <div className="mx-auto flex justify-between w-10/12">
+        <div className="  w-10/12  rounded-2xl bg-gray-300 p-2  flex flex-col space-y-2  sm:flex-row  justify-between ">
           <button
-            className=" p-2 bg-green-500  rounded-lg focus:outline-none"
+            className="py-2 px-2 sm:py-0 bg-green-500  rounded-lg focus:outline-none"
             onClick={() => {
               console.log(comite.nomComite);
               let comiteParam = {
@@ -92,12 +92,12 @@ function ComiteDetails({ match }) {
           </button>
         </div>
 
-        <div>
-          <h2 className=" w-1/4  text-center mx-auto">
+        <div  className=" w-10/12 flex flex-col items-center justify-center ">
+          <h2 className="">
             Liste des Membres du Bureau
           </h2>
 
-          <table className="table-auto  text-black  rounded-lg shadow mx-auto w-10/12 border-collapse">
+          <table className="sm:w-full text-black  rounded-lg shadow mx-auto  border-collapse">
             <thead>
               <tr className="uppercase bg-gray-300">
                 <th className="py-4 px-2 border-r-2 border-grey-800">N°</th>
@@ -140,11 +140,11 @@ function ComiteDetails({ match }) {
           </table>
         </div>
 
-        <div>
-          <h2 className=" w-1/4 text-center   mx-auto">
+        <div className=" w-10/12 flex flex-col items-center justify-center ">
+          <h2 className="">
             Liste des membres du Comité Directeur
           </h2>
-          <table className="table-auto  text-black rounded-lg shadow mx-auto w-10/12 border-collapse">
+          <table className="sm:w-full text-black rounded-lg shadow mx-auto  border-collapse">
             <thead>
               <tr className="uppercase bg-gray-300">
                 <th className="py-4 px-2 border-r-2 border-grey-800">N°</th>

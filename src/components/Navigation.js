@@ -14,9 +14,9 @@ const classes = {
     "flex  relative justify-between items-center text-lg font-quicksand select-none text-grey-900 bg-gray-400 h-20 p-10 sticky top-0 z-20",
 
   menuLarge: "hidden sm:flex space-x-10 items-center h-10  ",
-  logoLink: "flex space-x-3 items-baseline text-2xl font-bold",
+  logoLink: "",
   menuItem: "",
-  menuLink: "text-white cursor-pointer hover:text-blue-200  ",
+  menuLink: "text-white pl-0 cursor-pointer hover:text-blue-200  ",
   menuButton: "",
   menuIcon: "flex cursor-pointer text-2xl text-white sm:hidden ",
   menuMobile: (click) =>
@@ -59,8 +59,8 @@ function Navigation() {
           className={classes.logoLink}
           onClick={closeMobileMenu}
         >
-          <img className="w-30 h-20" src="/images/logo_pudc.jpeg" alt="logo" />
-          <h4 className="text-green-700"> </h4>
+          <img className="-ml-10 w-40 h-20" src="/images/logo_pudc.jpeg" alt="logo" />
+        
         </Link>
         <div className={classes.menuIcon} onClick={handleClick}>
           {showMenuMobile ? <FaTimes /> : <FaBars />}

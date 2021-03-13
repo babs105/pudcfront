@@ -74,8 +74,8 @@ function AddEquipment({ match }) {
   let idComite = match.params.idComite;
   return (
     <>
-      <div className=" bg-gray-800 flex flex-col  items-center justify-center  antialiased font-quicksand w-full ">
-        <form onSubmit={handleSubmit(onSubmit)} className=" bg-gray-200 sm:w-6/12 rounded-lg p-3 m-2">
+      <div className=" bg-gray-800 flex flex-col  items-center justify-start  antialiased font-quicksand w-full h-screen ">
+        <form onSubmit={handleSubmit(onSubmit)} className=" bg-gray-200 sm:w-6/12 rounded-lg p-4 mt-2">
           <h2 className="text-center font-bold uppercase text-xl m-3">
             Ajout Equipement
           </h2>
@@ -179,7 +179,7 @@ function AddEquipment({ match }) {
                   </div>
                   <button
                     disabled={village === ""}
-                    className=" bg-green-500  hover:bg-green-800 focus:outline-none p-2 rounded-lg flex justify-center items-center "
+                    className=" bg-green-500  text-white hover:bg-green-800 focus:outline-none p-2 rounded-lg flex justify-center items-center "
                     onClick={addVillagePolarise}
                   >
                     <svg
@@ -198,7 +198,7 @@ function AddEquipment({ match }) {
                     </svg>{" "}
                     Ajouter Liste
                   </button>
-                  <ul className="mb-50 divide-y-2 divide-white w-full">
+                  <ul className="mb-50 divide-y-2 divide-green-600 w-full">
                     {listeVillagePolarise.map((item, index) => (
                       <div className="flex justify-between space-y-3 items-center">
                         <li key={uuidv4()}>
@@ -231,7 +231,7 @@ function AddEquipment({ match }) {
 
           {logging ? (
             <button
-              class="bg-green-500  mt-20 w-full sm:w-1/3 mx-auto
+              class="bg-green-500  mt-10 w-full sm:w-1/3 mx-auto
              hover:bg-green-800 focus:outline-none flex
               text-white rounded py-2 px-4  "
             >
@@ -261,7 +261,7 @@ function AddEquipment({ match }) {
           ) : (
             <button
               type="submit"
-              className="bg-green-500  mt-20 block w-full sm:w-1/3 mx-auto
+              className="bg-green-500  mt-10 block w-full sm:w-1/3 mx-auto
                hover:bg-green-800 focus:outline-none
                 text-white rounded py-2 px-4  "
             >
