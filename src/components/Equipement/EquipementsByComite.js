@@ -149,6 +149,11 @@ function Equipements({ match }) {
           .toString()
           .toLowerCase()
           .indexOf(findKey.toLowerCase()) > -1
+          ||
+        row.nameEquipement
+          .toString()
+          .toLowerCase()
+          .indexOf(findKey.toLowerCase()) > -1
       // row.dateReception
       //   .toString()
       //   .toLowerCase()
