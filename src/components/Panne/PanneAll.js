@@ -18,11 +18,11 @@ function PanneAll() {
   }, []);
 
   const getAllPanne= () => {
-    setLoading(true);
-    panneService.getAllPanne().then((res) => {
-      setLoading(false);
-      setPannes(res);
-    });
+    // setLoading(true);
+    // panneService.getAllPanne().then((res) => {
+    //   setLoading(false);
+    //   setPannes(res);
+    // });
   };
 
   const search = (rows) => {
@@ -69,7 +69,7 @@ function PanneAll() {
   let i = 1;
   return (
     <>
-      <div className="flex flex-col items-center h-screen font-quicksand text-white bg-gray-800 antialiased  justify-items-center p-5">
+      <div className="flex flex-col items-center  space-y-4 h-screen font-quicksand text-white bg-gray-800 antialiased  justify-items-center p-5">
         <div className="relative py-3 px-4 rounded-lg sm:w-4/12 shadow bg-white ">
           <svg
             className="w-5 h-5 absolute text-gray-500 left-4 top-3"
@@ -92,7 +92,7 @@ function PanneAll() {
             onChange={(event) => setFindKey(event.target.value)}
           />
         </div>
-        <div className="w-full  py-4  text-gray-500">
+        
           <h2 className="text-center text-white text-lg"> Les Pannes</h2>
           {/* <div className="text-white">
             <button
@@ -137,7 +137,11 @@ function PanneAll() {
             </div>
             
             
-          ):   <table className="table-auto rounded-lg shadow w-full border-collapse">
+          ):   
+           <div class=" overflow-x-auto w-full -my-2 ">
+           <div class="py-2 align-middle inline-block min-w-full ">
+            <div class="overflow-hidden w-full">
+           <table className="table-auto  shadow w-full text-gray-900 border-collapse">
             <thead>
               <tr className="uppercase bg-gray-300">
                 <th className="py-4 px-2 border-r-2 border-grey-800">N°</th>
@@ -239,19 +243,20 @@ function PanneAll() {
                   </tr>
                 ))}
             </tbody>
-          </table>}
-        </div>
-        <Pagination
+          </table>
+          </div>
+          </div>
+          </div>
+          }
+          <Pagination
           nombreTotal={search(pannes).length}
           nombrePerPage={nombrePerPage}
           paginate={paginate}
         />
-        <div>
-          {/* <button className="bg-orange-500" onClick={() => imprimer()}>
-            imprimer
-          </button> */}
         </div>
-      </div>
+       
+        
+      
     </>
   );
 }

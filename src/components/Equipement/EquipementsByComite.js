@@ -243,7 +243,7 @@ function Equipements({ match }) {
 
   return (
     
-      <div className="bg-gray-800 flex flex-col text-black font-quicksand h-full w-full">
+      <div className="bg-gray-800 flex flex-col text-black font-quicksand h-screen w-full">
         <h2 className="mx-auto text-xl uppercase pt-3  text-white">
           {nomComite}
         </h2>
@@ -314,10 +314,10 @@ function Equipements({ match }) {
               </li>
             </ul>
             
-                <div className={" h-screen px-3 "+ (openTab===1 || openTab===2||openTab===3 ?" bg-gray-100  border border-green-600": " ")}>
+                <div className={"py-5 px-3 "+ (openTab===1 || openTab===2||openTab===3 ?" bg-gray-100  border border-green-600": " ")}>
                   <div
                     className={
-                      openTab === 1 ? "flex flex-col items-center " : "hidden"
+                      openTab === 1 ? "flex flex-col items-center space-y-4" : "hidden"
                     }
                     id="link1"
                   >
@@ -391,7 +391,9 @@ function Equipements({ match }) {
             </div>
             
             
-          ):
+          ):<div class=" overflow-x-auto w-full -my-2 ">
+          <div class="py-2 align-middle inline-block min-w-full ">
+            <div class="overflow-hidden  w-full">
                       <table className="w-full border-collapse">
                         <thead>
                           <tr className="uppercase  bg-gray-300">
@@ -504,6 +506,9 @@ function Equipements({ match }) {
                             ))}
                         </tbody>
                       </table>
+                      </div>
+                      </div>
+                      </div>
                 }
                     </div>
                     <Pagination
@@ -517,7 +522,7 @@ function Equipements({ match }) {
                           className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
                           // onClick={() => setShowModal(false)}
                         >
-                          <div className="relative w-auto my-6 mx-auto max-w-3xl">
+                          <div className="w-auto my-6 mx-4 max-w-xl">
                             <form
                               onSubmit={handleSubmit(onSubmit1)}
                               className=""
@@ -543,7 +548,7 @@ function Equipements({ match }) {
                                 {/*body*/}
                                 <div className="relative  flex-auto">
                                   <div className="text-gray-600 text-lg leading-relaxed p-10">
-                                    <div className="flex flex-col space-y-2 items-start p-10">
+                                    <div className="flex flex-col space-y-2  p-10">
                                       <div>
                                         <label>Date de Déclaration</label>
 
@@ -575,7 +580,7 @@ function Equipements({ match }) {
                                   </div>
                                 </div>
                                 {/*footer*/}
-                                <div className="flex items-center justify-end p-6 border-t border-solid border-gray-300 rounded-b">
+                                <div className="flex items-center justify-center sm:justify-end p-6 border-t border-solid border-gray-300 rounded-b">
                                   <button
                                     className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
                                     type="button"
@@ -644,7 +649,7 @@ function Equipements({ match }) {
                           className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
                           // onClick={() => setShowModal(false)}
                         >
-                          <div className="relative w-auto my-6 mx-auto max-w-3xl">
+                          <div className="w-auto my-6 mx-4 max-w-xl">
                             <form
                               onSubmit={handleSubmit(onSubmit2)}
                               className=""
@@ -662,15 +667,13 @@ function Equipements({ match }) {
                                       setShowModalCloturePanne(false)
                                     }
                                   >
-                                    {/* <span className="bg-transparent text-red-600  h-6 w-6 text-2xl block outline-none focus:outline-none">
-                                                  ×
-                                                </span> */}
+                                  
                                   </button>
                                 </div>
                                 {/*body*/}
-                                <div className="relative  flex-auto">
+                                <div className=" flex-auto">
                                   <div className="text-gray-600 text-lg leading-relaxed p-10">
-                                    <div className="flex flex-col space-y-2 items-start p-10">
+                                    <div className="flex flex-col space-y-2 p-10 ">
                                       <div>
                                         <label>Date de Clôture</label>
 
@@ -702,7 +705,7 @@ function Equipements({ match }) {
                                   </div>
                                 </div>
                                 {/*footer*/}
-                                <div className="flex items-center justify-end p-6 border-t border-solid border-gray-300 rounded-b">
+                                <div className="flex items-center justify-center sm:justify-end p-6 border-t border-solid border-gray-300 rounded-b">
                                   <button
                                     className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
                                     type="button"
@@ -842,7 +845,10 @@ function Equipements({ match }) {
             </div>
             
             
-          ):     <table className="min-h-500 w-full border-collapse">
+          ):  <div class=" overflow-x-auto w-full -my-2   ">
+          <div class="py-2 align-middle inline-block min-w-full  ">
+            <div class="overflow-hidden  w-full">  
+             <table className="min-h-500 w-full border-collapse">
                         <thead >
                           <tr className="uppercase bg-gray-300">
                             <th className="py-4 px-2 border-r-2 border-grey-800">
@@ -924,7 +930,11 @@ function Equipements({ match }) {
                               </tr>
                             ))}
                         </tbody>
-                      </table>}
+                      </table>
+                      </div>
+                      </div>
+                      </div>}
+                    
                     </div>
                     <Pagination
                       nombreTotal={search(pannes).length}
@@ -1009,7 +1019,10 @@ function Equipements({ match }) {
             </div>
             
             
-          ):     <table className="table-auto w-full border-collapse">
+          ): <div class=" overflow-x-auto w-full -my-2   ">
+          <div class="py-2 align-middle inline-block min-w-full  ">
+            <div class="overflow-hidden  w-full">  
+                <table className="table-auto w-full border-collapse">
                         <thead>
                           <tr className="uppercase bg-gray-300">
                             <th className="py-4 px-2 border-r-2 border-grey-800">
@@ -1112,7 +1125,11 @@ function Equipements({ match }) {
                               </tr>
                             ))}
                         </tbody>
-                      </table>}
+                      </table>
+                      </div>
+                      </div>
+                      </div>
+                      }
                     </div>
                     <Pagination
                       nombreTotal={search(reparations).length}

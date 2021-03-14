@@ -74,7 +74,7 @@ function AddFormation({ match }) {
   return (
     <>
       <div className=" bg-gray-800 flex flex-col items-center justify-start  antialiased font-quicksand w-full h-screen ">
-        <form onSubmit={handleSubmit(onSubmit)} className=" bg-gray-200  rounded-lg py-5 p-4 mt-2">
+        <form onSubmit={handleSubmit(onSubmit)} className=" bg-gray-200  rounded-lg py-5 p-4  m-2">
           <h2 className="text-center font-bold uppercase text-xl m-3">
             Ajout Formation
           </h2>
