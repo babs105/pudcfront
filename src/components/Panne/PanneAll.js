@@ -18,11 +18,11 @@ function PanneAll() {
   }, []);
 
   const getAllPanne= () => {
-    // setLoading(true);
-    // panneService.getAllPanne().then((res) => {
-    //   setLoading(false);
-    //   setPannes(res);
-    // });
+    setLoading(true);
+    panneService.getAllPanne().then((res) => {
+      setLoading(false);
+      setPannes(res);
+    });
   };
 
   const search = (rows) => {
