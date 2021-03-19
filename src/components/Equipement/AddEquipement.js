@@ -191,10 +191,7 @@ function AddEquipment({ match }) {
                   ref={register}
                   type="text"
                   name="operateurMaintenance"
-                >
-                  <option value="STMP">STMP</option>
-                  <option value="POP">POP</option>
-                </select>
+                />
               </div>
             </div>
             <div className="flex flex-col space-y-4 sm:w-1/12"></div>
