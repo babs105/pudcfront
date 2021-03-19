@@ -109,9 +109,47 @@ function AddEquipment({ match }) {
                   type="text"
                   name="typeEquipement"
                 >
-                  <option value="décortiqueuse">décortiqueuse</option>
-                  <option value="décortiqueuse">décortiqueuse</option>
-                  <option value="decortiqueuse">décortiqueuse</option>
+                  <option value="Moulin à mil (Marteaux) diésel">
+                    Moulin à mil (Marteaux) diésel
+                  </option>
+                  <option value="Moulin à mil (Marteaux) électrique">
+                    Moulin à mil (Marteaux) électrique
+                  </option>
+
+                  <option value="Moulin à céréales (Marteaux) électrique">
+                    Moulin à céréales (Marteaux) électrique
+                  </option>
+                  <option value="Moulin à céréales (Marteaux) diésel">
+                    Moulin à céréales (Marteaux) diésel
+                  </option>
+                  <option value="Décortiqueuse à mil diésel">
+                    Décortiqueuse à mil diésel
+                  </option>
+                  <option value="Décortiqueuse à mil électrique">
+                    Décortiqueuse à mil électrique
+                  </option>
+
+                  <option value="Batteuse à mil diésel">
+                    Batteuse à mil diésel
+                  </option>
+                  <option value="Batteuse à mil électrique">
+                    Batteuse à mil diésel électrique
+                  </option>
+                  <option value="Batteuse à riz diésel">
+                    Batteuse à riz diésel
+                  </option>
+                  <option value="Batteuse à riz électrique">
+                    Batteuse à riz électrique
+                  </option>
+                  <option value="Egreneuse maïs diésel">
+                    Egreneuse maïs diésel
+                  </option>
+                  <option value="Presse à huile électrique">
+                    Presse à huile électrique
+                  </option>
+                  <option value="Presse à huile manuelle">
+                    Presse à huile manuelle
+                  </option>
                 </select>
               </div>
               <div>
