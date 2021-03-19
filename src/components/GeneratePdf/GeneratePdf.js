@@ -58,8 +58,8 @@ const generatePDF = (comite) => {
   // ticket title. and margin-top + margin-left
   doc.setFontSize(12);
   doc.setLineCap(2);
-  doc.text(`Nom Comité : ${comite.nomComite}`, 14, 15);
-  doc.text(`Date Création  : ${comite.dateCreation}`, 14, 20);
+  doc.text(`Comité : ${comite.nomComite}`, 14, 15);
+  doc.text(`Nombre d'équipement  : ${comite.nbreEquipement}`, 14, 20);
   doc.text(`Région : ${comite.region}`, 14, 25);
   doc.text(`Département : ${comite.departement}`, 14, 30);
   doc.text(`Commune : ${comite.commune}`, 14, 35);
@@ -67,7 +67,6 @@ const generatePDF = (comite) => {
   doc.text(`Quartier-Village :${comite.quartierVillage}`, 14, 45);
   doc.text(`Nom Chef de Village: ${comite.nomChefVillage}`, 14, 50);
   doc.text(`Téléphone Chef de Village: : ${comite.telChefVillage}`, 14, 55);
-
   doc.text(`Assemblée d'information  : ${comite.dateAssembleeInfo}`, 14, 65);
   // doc.text(`Lieu : ${comite.lieuAssembleeInfo1}`, 14, 70);
   doc.addImage(`data:**/*;base64,${comite.photoPresidente}`, 145, 15, 50, 50);

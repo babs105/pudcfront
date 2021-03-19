@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 
-import { useHistory } from "react-router-dom";
 import Pagination from "../DataTable/Pagination";
-import { equipementService } from "../../service/equipementService";
+import { formationService } from "../../service/formationService";
 
-function EquipementAll() {
-  const [equipements, setEquipements] = useState([]);
+function FormationtAll() {
+  const [formations, setFormations] = useState([]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -18,9 +17,9 @@ function EquipementAll() {
 
   const getAllEquipment = () => {
     setLoading(true);
-    equipementService.getAllEquipment().then((res) => {
+    formationService.getAllFormation().then((res) => {
       setLoading(false);
-      setEquipements(res);
+      setFormations(res);
     });
   };
 
@@ -29,11 +28,11 @@ function EquipementAll() {
       (row) =>
         row.nomComite.toString().toLowerCase().indexOf(findKey.toLowerCase()) >
           -1 ||
-        row.typeEquipement
+        row.themeFormation
           .toString()
           .toLowerCase()
           .indexOf(findKey.toLowerCase()) > -1 ||
-        row.statutEquipement
+        row.lieuFormation
 
           .toString()
           .toLowerCase()
@@ -91,7 +90,7 @@ function EquipementAll() {
           />
         </div>
 
-        <h2 className="text-center text-white text-lg"> Les Equipements</h2>
+        <h2 className="text-center text-white text-lg"> Les Formations</h2>
         {/* <div className="text-white">
             <button
               className="bg-green-600 p-2 rounded-lg mb-2"
@@ -143,23 +142,23 @@ function EquipementAll() {
                         Comite
                       </th>
                       <th className="py-4 px-2 border-r-2 border-grey-800">
-                        Date Réception
+                        Date Formation
+                      </th>
+                      <th className="py-4 px-2 border-r-2 border-grey-800">
+                        Theme
                       </th>
                       <th className="py-4 px-2 border-r-2 border-grey-light">
-                        Equipement_ID
+                        Lieu
                       </th>
                       <th className="py-4 px-2 border-r-2 border-grey-light">
-                        Type d'équipement
-                      </th>
-                      <th className="py-4 px-2 border-r-2 border-grey-light">
-                        Statut
+                        Durée
                       </th>
 
                       <th className="py-4 px-2  border-grey-light">Action</th>
                     </tr>
                   </thead>
                   <tbody className="bg-white ">
-                    {search(equipements)
+                    {search(formations)
                       .slice(
                         currentPage * nombrePerPage - nombrePerPage,
                         currentPage * nombrePerPage
@@ -176,29 +175,18 @@ function EquipementAll() {
                             {row.nomComite}
                           </td>
                           <td className="py-4 px-2 border-b border-grey-light">
-                            {row.dateReception}
+                            {row.dateFormation}
                           </td>
                           <td className="py-4 px-2 border-b border-grey-light">
-                            {row.nameEquipement}
+                            {row.themeFormation}
                           </td>
                           <td className="py-4 px-2 border-b border-grey-light">
-                            {
-                              row.typeEquipement
-                              // <a
-                              //   download={row.name}
-                              //   href={`data:application/pdf;base64,${row.photoPresidente}`}
-                              // >
-                              //   <img
-                              //     class=" object-fill w-20 h-10"
-                              //     src={`data:application/pdf;base64,${row.photoPresidente}`}
-                              //     alt="doc"
-                              //   />
-                              // </a>
-                            }
+                            {row.lieuFormation}
                           </td>
+
                           <td className="py-4 px-2 border-b border-grey-light">
                             {
-                              row.statutEquipement
+                              row.dureeFormation
                               // <a
                               //   download={row.name}
                               //   href={`data:application/pdf;base64,${row.photoPresidente}`}
@@ -246,7 +234,7 @@ function EquipementAll() {
           </div>
         )}
         <Pagination
-          nombreTotal={search(equipements).length}
+          nombreTotal={search(formations).length}
           nombrePerPage={nombrePerPage}
           paginate={paginate}
         />
@@ -254,4 +242,4 @@ function EquipementAll() {
     </>
   );
 }
-export default EquipementAll;
+export default FormationtAll;

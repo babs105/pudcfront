@@ -30,21 +30,21 @@ function ComiteDetails({ match }) {
       <div className="bg-gray-800 flex flex-col justify-center items-center space-y-14 text-white p-4  font-quicksand w-full">
         <div className="w-10/12 flex flex-col space-y-10 justify-stretch items-stretch sm:flex-row sm:justify-between sm:space-x-2 sm:items-center ">
           <ul>
-            <li>Nom Comité : {comite.nomComite}</li>
-            <li>Date de Création : {comite.dateCreation}</li>
+            <li>Comité : {comite.nomComite}</li>
             <li>Numero Récipissé : {comite.numRecepisse}</li>
+            <li>Nombre d'équipement: {comite.nbreEquipement}</li>
             <li>Région : {comite.region}</li>
             <li>Département : {comite.departement}</li>
             <li>Commune : {comite.commune}</li>
           </ul>
-          
-            <img
-              class=" object-fill w-40 h-40"
-              src={`data:**/*;base64,${comite.photoPresidente}`}
-              alt="presidente"
-            />
-            {/* <h2> Présidente</h2> */}
-          
+
+          <img
+            class=" object-fill w-40 h-40"
+            src={`data:**/*;base64,${comite.photoPresidente}`}
+            alt="presidente"
+          />
+          {/* <h2> Présidente</h2> */}
+
           <ul>
             <li>Village/Quartier : {comite.quartierVillage}</li>
             <li>Nom du Chef de Village: {comite.nomChefVillage}</li>
@@ -92,113 +92,125 @@ function ComiteDetails({ match }) {
           </button>
         </div>
 
-        <div  className=" w-10/12 flex flex-col items-center justify-center ">
-          <h2 className="">
-            Liste des Membres du Bureau
-          </h2>
+        <div className=" w-10/12 flex flex-col items-center justify-center ">
+          <h2 className="">Liste des Membres du Bureau</h2>
           <div class=" overflow-x-auto w-full -my-2  ">
-    <div class="py-2 align-middle inline-block min-w-full ">
-      <div class="overflow-hidden  w-full">
-          <table className="w-full text-black  rounded-lg shadow mx-auto  border-collapse">
-            <thead>
-              <tr className="uppercase bg-gray-300">
-                <th className="py-4 px-2 border-r-2 border-grey-800">N°</th>
-                <th className="py-4 px-2 border-r-2 border-grey-800">Prenom</th>
-                <th className="py-4 px-2 border-r-2 border-grey-800">Nom</th>
-                <th className="py-4 px-2  border-grey-light">Poste</th>
-                {/* <th className="py-4 px-2  border-grey-light">Action</th> */}
-              </tr>
-            </thead>
-            <tbody className="bg-gray-100">
-              {comite.membres?.map((row) => (
-                <tr className="text-center  " key={row.id}>
-                  <td className="py-4 px-2 border-b border-grey-light">
-                    {i++}
-                  </td>
-                  <td className="py-4 px-2 border-b border-grey-light">
-                    {row.prenom}
-                  </td>
-                  <td className="py-4 px-2 border-b border-grey-light">
-                    {row.nom}
-                  </td>
-                  <td className="py-4 px-2 border-b border-grey-light">
-                    {
-                      row.poste
-                      // <a
-                      //   download={row.name}
-                      //   href={`data:application/pdf;base64,${row.photoPresidente}`}
-                      // >
-                      //   <img
-                      //     class=" object-fill w-20 h-10"
-                      //     src={`data:application/pdf;base64,${row.photoPresidente}`}
-                      //     alt="doc"
-                      //   />
-                      // </a>
-                    }
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          </div>
-          </div>
+            <div class="py-2 align-middle inline-block min-w-full ">
+              <div class="overflow-hidden  w-full">
+                <table className="w-full text-black  rounded-lg shadow mx-auto  border-collapse">
+                  <thead>
+                    <tr className="uppercase bg-gray-300">
+                      <th className="py-4 px-2 border-r-2 border-grey-800">
+                        N°
+                      </th>
+                      <th className="py-4 px-2 border-r-2 border-grey-800">
+                        Prenom
+                      </th>
+                      <th className="py-4 px-2 border-r-2 border-grey-800">
+                        Nom
+                      </th>
+                      <th className="py-4 px-2  border-grey-light">Poste</th>
+                      {/* <th className="py-4 px-2  border-grey-light">Action</th> */}
+                    </tr>
+                  </thead>
+                  <tbody className="bg-gray-100">
+                    {comite.membres?.map((row) => (
+                      <tr className="text-center  " key={row.id}>
+                        <td className="py-4 px-2 border-b border-grey-light">
+                          {i++}
+                        </td>
+                        <td className="py-4 px-2 border-b border-grey-light">
+                          {row.prenom}
+                        </td>
+                        <td className="py-4 px-2 border-b border-grey-light">
+                          {row.nom}
+                        </td>
+                        <td className="py-4 px-2 border-b border-grey-light">
+                          {
+                            row.poste
+                            // <a
+                            //   download={row.name}
+                            //   href={`data:application/pdf;base64,${row.photoPresidente}`}
+                            // >
+                            //   <img
+                            //     class=" object-fill w-20 h-10"
+                            //     src={`data:application/pdf;base64,${row.photoPresidente}`}
+                            //     alt="doc"
+                            //   />
+                            // </a>
+                          }
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
 
         <div className=" w-10/12 flex flex-col items-center justify-center ">
-          <h2 className="">
-            Liste des membres du Comité Directeur
-          </h2>
+          <h2 className="">Liste des membres du Comité Directeur</h2>
           <div class=" overflow-x-auto w-full -my-2  ">
-    <div class="py-2 align-middle inline-block min-w-full ">
-      <div class="overflow-hidden  w-full">
-          <table className="w-full text-black rounded-lg shadow mx-auto  border-collapse">
-            <thead>
-              <tr className="uppercase bg-gray-300">
-                <th className="py-4 px-2 border-r-2 border-grey-800">N°</th>
-                <th className="py-4 px-2 border-r-2 border-grey-800">Prenom</th>
-                <th className="py-4 px-2 border-r-2 border-grey-800">Nom</th>
-                <th className="py-4 px-2 border-r-2 border-grey-800">Tel</th>
-                <th className="py-4 px-2  border-grey-light">Profession</th>
-                {/* <th className="py-4 px-2  border-grey-light">Action</th> */}
-              </tr>
-            </thead>
-            <tbody className="bg-gray-100">
-              {comite.listePresence?.map((row) => (
-                <tr className="text-center   " key={row.id}>
-                  <td className="py-4 px-2 border-b border-grey-light">
-                    {j++}
-                  </td>
-                  <td className="py-4 px-2 border-b border-grey-light">
-                    {row.prenom}
-                  </td>
-                  <td className="py-4 px-2 border-b border-grey-light">
-                    {row.nom}
-                  </td>
-                  <td className="py-4 px-2 border-b border-grey-light">
-                    {row?.tel}
-                  </td>
-                  <td className="py-4 px-2 border-b border-grey-light">
-                    {
-                      row.profession
-                      // <a
-                      //   download={row.name}
-                      //   href={`data:application/pdf;base64,${row.photoPresidente}`}
-                      // >
-                      //   <img
-                      //     class=" object-fill w-20 h-10"
-                      //     src={`data:application/pdf;base64,${row.photoPresidente}`}
-                      //     alt="doc"
-                      //   />
-                      // </a>
-                    }
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          </div>
-          </div>
+            <div class="py-2 align-middle inline-block min-w-full ">
+              <div class="overflow-hidden  w-full">
+                <table className="w-full text-black rounded-lg shadow mx-auto  border-collapse">
+                  <thead>
+                    <tr className="uppercase bg-gray-300">
+                      <th className="py-4 px-2 border-r-2 border-grey-800">
+                        N°
+                      </th>
+                      <th className="py-4 px-2 border-r-2 border-grey-800">
+                        Prenom
+                      </th>
+                      <th className="py-4 px-2 border-r-2 border-grey-800">
+                        Nom
+                      </th>
+                      <th className="py-4 px-2 border-r-2 border-grey-800">
+                        Tel
+                      </th>
+                      <th className="py-4 px-2  border-grey-light">
+                        Profession
+                      </th>
+                      {/* <th className="py-4 px-2  border-grey-light">Action</th> */}
+                    </tr>
+                  </thead>
+                  <tbody className="bg-gray-100">
+                    {comite.listePresence?.map((row) => (
+                      <tr className="text-center   " key={row.id}>
+                        <td className="py-4 px-2 border-b border-grey-light">
+                          {j++}
+                        </td>
+                        <td className="py-4 px-2 border-b border-grey-light">
+                          {row.prenom}
+                        </td>
+                        <td className="py-4 px-2 border-b border-grey-light">
+                          {row.nom}
+                        </td>
+                        <td className="py-4 px-2 border-b border-grey-light">
+                          {row?.tel}
+                        </td>
+                        <td className="py-4 px-2 border-b border-grey-light">
+                          {
+                            row.profession
+                            // <a
+                            //   download={row.name}
+                            //   href={`data:application/pdf;base64,${row.photoPresidente}`}
+                            // >
+                            //   <img
+                            //     class=" object-fill w-20 h-10"
+                            //     src={`data:application/pdf;base64,${row.photoPresidente}`}
+                            //     alt="doc"
+                            //   />
+                            // </a>
+                          }
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </div>

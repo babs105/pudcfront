@@ -10,6 +10,7 @@ import Equipements from "../components/Equipement/EquipementAll";
 import FormationsByComite from "../components/Formation/FormationsByComite";
 import AddFormation from "../components/Formation/AddFormation";
 import Pannes from "../components/Panne/PanneAll";
+import Formations from "../components/Formation/FomationAll";
 
 const PrivateRoutes = () => (
   <div>
@@ -19,15 +20,23 @@ const PrivateRoutes = () => (
       <Route exact path="/comite" component={Comite} />
       <Route exact path="/comite-show/:id" component={ComiteDetails} />
 
-
       <Route exact path="/equipement-all" component={Equipements} />
-      <Route exact path="/equipement/:comiteParam" component={EquipementsByComite} />
+      <Route
+        exact
+        path="/equipement/:comiteParam"
+        component={EquipementsByComite}
+      />
       <Route exact path="/add-equipment/:idComite" component={AddEquipment} />
 
       <Route exact path="/panne-all" component={Pannes} />
 
-      <Route exact path="/formation/:comiteParam" component={FormationsByComite} />
+      <Route
+        exact
+        path="/formation/:comiteParam"
+        component={FormationsByComite}
+      />
       <Route exact path="/add-formation/:idComite" component={AddFormation} />
+      <Route exact path="/formation-all" component={Formations} />
     </Switch>
   </div>
 );

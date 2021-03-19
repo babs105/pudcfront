@@ -7,7 +7,8 @@ import { comiteService } from "../../service/comiteService";
 
 const schema = yup.object().shape({
   nomComite: yup.string().required(),
-  dateCreation: yup.date().required(),
+  commune: yup.string().required(),
+  dateAssembleeConstitutive: yup.date().required(),
   image: yup
     .mixed()
     .required("Charger le fichier")
@@ -75,7 +76,7 @@ function Comite() {
     console.log(watch.value);
     setlogging(true);
     const comite = {
-      dateCreation: data.dateCreation,
+      // dateCreation: data.dateCreation,
       nomComite: data.nomComite,
       region: data.region,
       departement: data.departement,
@@ -86,7 +87,7 @@ function Comite() {
       numRecepisse: data.numRecepisse,
       dateAssembleeInfo: data.dateAssembleeInfo,
       dateAssembleeConstitutive: data.dateAssembleeConstitutive,
-      isEquipement: data.isEquipement,
+      nbreEquipement: data.nbreEquipement,
       membres: listeMembre,
       listePresence: listePresence,
     };
@@ -111,8 +112,13 @@ function Comite() {
   return (
     <>
       <div className=" bg-gray-800 antialiased  flex flex-col  items-center justify-center  font-quicksand w-full">
-        <form onSubmit={handleSubmit(onSubmit)} className=" bg-gray-200 sm:w-11/12 rounded-lg m-4 p-10">
-          <h2 className="text-center  font-bold uppercase text-xl mb-2">Ajout Comite</h2>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className=" bg-gray-200 sm:w-11/12 rounded-lg m-4 p-10"
+        >
+          <h2 className="text-center  font-bold uppercase text-xl mb-2">
+            Ajout Comite
+          </h2>
           <div className="flex flex-col space-y-8 sm:flex-row sm:mx-auto sm:space-x-12 sm:space-y-0  ">
             {" "}
             <div className="flex flex-col space-y-4 sm:w-6/12">
@@ -131,7 +137,7 @@ function Comite() {
                   </span>
                 )}
               </div>
-              <div>
+              {/* <div>
                 {" "}
                 <label> Date Création</label>
                 <input
@@ -145,7 +151,7 @@ function Comite() {
                     date Création invalide
                   </span>
                 )}
-              </div>
+              </div> */}
               <label> Avez-vous un récépissé ?</label>
               <div>
                 {" "}
@@ -203,79 +209,83 @@ function Comite() {
                     type="text"
                     name="departement"
                   >
-                    <option value="Département">Département</option>
-                    <option value="Louga">Louga</option>
-                    <option value="Matam">Matam</option>
-                    <option value="Saint-Louis">Saint-Louis</option>
-                    <option value="Dakar">Dakar</option>
-                    <option value="Diourbel">Diourbel</option>
-                    <option value="Fatick">Fatick</option>
-                    <option value="Thiès">Thiès</option>
-                    <option value="Kaffrine">Kaffrine</option>
-                    <option value="Kaolack">Kaolack</option>
+                    <option value="Ziguinchor">Ziguinchor</option>
+                    <option value="Bignona">Bignona</option>
+                    <option value="Oussouye">Oussouye</option>
+                  </select>
+                </div>
+              )}
+              {watchRegion === "Kolda" && (
+                <div>
+                  <label> Département : </label>
+                  <select
+                    class="text-gray-900 py-2 rounded px-4  w-full  focus:outline-none focus:border-green-400 border-2"
+                    ref={register}
+                    type="text"
+                    name="departement"
+                  >
+                    <option value="Kolda">Kolda</option>
+                    <option value="Medina Yero Foulah">
+                      Medina Yero Foulah
+                    </option>
+                    <option value=" Vélingara"> Vélingara</option>
+                  </select>
+                </div>
+              )}
+              {watchRegion === "Sédhiou" && (
+                <div>
+                  <label> Département : </label>
+                  <select
+                    class="text-gray-900 py-2 rounded px-4  w-full  focus:outline-none focus:border-green-400 border-2"
+                    ref={register}
+                    type="text"
+                    name="departement"
+                  >
+                    <option value="Sédhiou">Sédhiou</option>
+                    <option value="Goudomp">Goudomp</option>
+                    <option value="Bounkiling"> Bounkiling</option>
                   </select>
                 </div>
               )}
 
               <div>
                 <label> Commune : </label>
-                <select
+                <input
                   class="text-gray-900 py-2 rounded px-4  w-full  focus:outline-none focus:border-green-400 border-2"
                   ref={register}
                   type="text"
                   name="commune"
+                />
+                {errors.commune && (
+                  <span class="text-sm font-bold text-red-600 ">
+                    commune invalide
+                  </span>
+                )}
+              </div>
+
+              <div>
+                <label
+                  className="pr-3
+                  "
                 >
-                  <option value="Commune">Commune</option>
-                  <option value="Ziguinchor">Ziguinchor</option>
-                  <option value="Tambacounda">Tambacounda</option>
-                  <option value="Sédhiou">Sédhiou</option>
-                  <option value="Kédougou">Kédougou</option>
-                  <option value="Kolda">Kolda</option>
-                  <option value="Louga">Louga</option>
-                  <option value="Matam">Matam</option>
-                  <option value="Saint-Louis">Saint-Louis</option>
-                  <option value="Dakar">Dakar</option>
-                  <option value="Diourbel">Diourbel</option>
-                  <option value="Fatick">Fatick</option>
-                  <option value="Thiès">Thiès</option>
-                  <option value="Kaffrine">Kaffrine</option>
-                  <option value="Kaolack">Kaolack</option>
+                  {" "}
+                  Nombre d'équipement :{" "}
+                </label>
+                <select
+                  class="text-gray-900 py-2 rounded   w-4/12  focus:outline-none focus:border-green-400 border-2"
+                  ref={register}
+                  type="text"
+                  name="nbreEquipement"
+                >
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
                 </select>
               </div>
-              <label> Avez-vous des équipements ?</label>
-              <div>
-                Oui{"  "}
-                <input
-                  type="checkbox"
-                  name="showNombreEquipement"
-                  ref={register}
-                />
-              </div>
-              {watchShowNombreEquipement && (
-                <div>
-                  <label
-                    className="pr-3
-                  "
-                  >
-                    {" "}
-                    Nombre d'équipement :{" "}
-                  </label>
-                  <select
-                    class="text-gray-900 py-2 rounded   w-4/12  focus:outline-none focus:border-green-400 border-2"
-                    ref={register}
-                    type="text"
-                    name="nbreEquipement"
-                  >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                  </select>
-                </div>
-              )}
             </div>
             <div className="flex flex-col space-y-4 sm:w-8/12">
               <div>
@@ -349,7 +359,7 @@ function Comite() {
                 {errors.dateAssembleeConstitutive && (
                   <span class="text-sm font-bold text-red-600 ">
                     dateAssembleeConstitutive invalide
-                                  </span>
+                  </span>
                 )}
               </div>
 
@@ -641,7 +651,7 @@ function Comite() {
           )}
           {message && (
             <div
-              className="py-3 px-4 text-lg rounded-lg h-10 border-t-4 space-x-8 w-1/3 mx-auto  border-red-800 font-bold flex flex-row justify-between
+              className="py-3 px-4 text-lg rounded-lg h-10 border-t-4 space-x-8 w-2/3 mx-auto  border-red-800 font-bold flex flex-row justify-between
             items-center bg-orange-200 text-blue-600 m-4"
             >
               {message}

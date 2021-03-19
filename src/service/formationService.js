@@ -16,10 +16,9 @@ function createFormation(data) {
     .then((equipement) => equipement);
 }
 
-
 function getAllFormation() {
   return axios
-    .get("/equipement/getAllEquipment")
+    .get("/formation/getAllFormation")
     .then(handleResponse)
     .then((equipement) => equipement);
 }

@@ -75,7 +75,10 @@ function AddEquipment({ match }) {
   return (
     <>
       <div className=" bg-gray-800 flex flex-col  items-center justify-start  antialiased font-quicksand w-full h-screen ">
-        <form onSubmit={handleSubmit(onSubmit)} className=" bg-gray-200 sm:w-6/12 rounded-lg p-4 mt-2">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className=" bg-gray-200 sm:w-6/12 rounded-lg p-4 mt-2"
+        >
           <h2 className="text-center font-bold uppercase text-xl m-3">
             Ajout Equipement
           </h2>
@@ -270,7 +273,7 @@ function AddEquipment({ match }) {
           )}
           {message && (
             <div
-              className="py-3 px-4 text-lg rounded-lg h-10 border-t-4 space-x-8 w-1/3 mx-auto  border-red-800 font-bold flex flex-row justify-between
+              className="py-3 px-4 text-lg rounded-lg h-10 border-t-4 space-x-8 w-2/3 mx-auto  border-red-800 font-bold flex flex-row justify-between
             items-center bg-orange-200 text-blue-600 m-4"
             >
               {message}

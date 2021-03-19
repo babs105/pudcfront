@@ -9,12 +9,12 @@ const schema = yup.object().shape({
   themeFormation: yup.string().required(),
   lieuFormation: yup.string().required(),
   dateFormation: yup.date().required(),
-//   image: yup
-//     .mixed()
-//     .required("Charger le fichier")
-//     .test("fileSize", "Charger le fichier ou fichier trop lourd", (value) => {
-//       return value.length && value[0].size <= 2000000;
-//     }),
+  //   image: yup
+  //     .mixed()
+  //     .required("Charger le fichier")
+  //     .test("fileSize", "Charger le fichier ou fichier trop lourd", (value) => {
+  //       return value.length && value[0].size <= 2000000;
+  //     }),
 });
 function AddFormation({ match }) {
   const [village, setVillage] = useState("");
@@ -22,18 +22,18 @@ function AddFormation({ match }) {
 
   const [message, setmessage] = useState("");
 
-//   const removeItemListeVillage = (item) =>
-//     setListeVillagePolarise(
-//       listeVillagePolarise.filter((member) => member.id !== item.id)
-//     );
+  //   const removeItemListeVillage = (item) =>
+  //     setListeVillagePolarise(
+  //       listeVillagePolarise.filter((member) => member.id !== item.id)
+  //     );
 
-//   const addVillagePolarise = (event) => {
-//     event.preventDefault();
-//     setListeVillagePolarise([
-//       ...listeVillagePolarise,
-//       { id: uuidv4(), villageName: village },
-//     ]);
-//   };
+  //   const addVillagePolarise = (event) => {
+  //     event.preventDefault();
+  //     setListeVillagePolarise([
+  //       ...listeVillagePolarise,
+  //       { id: uuidv4(), villageName: village },
+  //     ]);
+  //   };
 
   const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(schema),
@@ -44,7 +44,7 @@ function AddFormation({ match }) {
 
     setlogging(true);
     const formation = {
-     dateFormation: data.dateFormation,
+      dateFormation: data.dateFormation,
       idComite: idComite,
       themeFormation: data.themeFormation,
       lieuFormation: data.lieuFormation,
@@ -57,15 +57,15 @@ function AddFormation({ match }) {
     // console.log(formData.get("photoEntreposage"));
     // console.log(formData.get("equipment"));
     formationService
-      .createEquipment(formation)
+      .createFormation(formation)
       .then((res) => {
         setlogging(false);
-        setmessage("Equipement créé avec succes");
+        setmessage("Formation créée avec succes");
         console.log(res);
       })
       .catch((e) => {
         setlogging(false);
-        setmessage("Echec création comité ressayez");
+        setmessage("Echec création Formation ressayez");
         console.log(e);
       });
   };
@@ -74,7 +74,10 @@ function AddFormation({ match }) {
   return (
     <>
       <div className=" bg-gray-800 flex flex-col items-center justify-start  antialiased font-quicksand w-full h-screen ">
-        <form onSubmit={handleSubmit(onSubmit)} className=" bg-gray-200  rounded-lg py-5 p-4  m-2">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className=" bg-gray-200  rounded-lg py-5 p-4  m-2"
+        >
           <h2 className="text-center font-bold uppercase text-xl m-3">
             Ajout Formation
           </h2>
@@ -105,7 +108,6 @@ function AddFormation({ match }) {
                   type="text"
                   name="themeFormation"
                 />
-                
                 {errors.themeFormation && (
                   <span class="text-sm font-bold text-red-600 ">
                     theme Formation invalide
@@ -121,7 +123,6 @@ function AddFormation({ match }) {
                   type="text"
                   name="lieuFormation"
                 />
-                
                 {errors.lieuFormation && (
                   <span class="text-sm font-bold text-red-600 ">
                     lieu Formation invalide
@@ -137,7 +138,6 @@ function AddFormation({ match }) {
                   type="text"
                   name="dureeFormation"
                 />
-                
                 {errors.dureeFormation && (
                   <span class="text-sm font-bold text-red-600 ">
                     duree Formation invalide
@@ -153,7 +153,6 @@ function AddFormation({ match }) {
                   type="text"
                   name="personnesFormees"
                 />
-                
                 {errors.personnesFormees && (
                   <span class="text-sm font-bold text-red-600 ">
                     personnesFormees invalide
@@ -161,8 +160,6 @@ function AddFormation({ match }) {
                 )}
               </div>
             </div>
-            
-            
           </div>
           {logging ? (
             <button
@@ -205,7 +202,7 @@ function AddFormation({ match }) {
           )}
           {message && (
             <div
-              className="py-3 px-4 text-lg rounded-lg h-10 border-t-4 space-x-8 w-1/3 mx-auto  border-red-800 font-bold flex flex-row justify-between
+              className="py-3 px-4 text-lg rounded-lg h-10 border-t-4 space-x-8 w-2/3 mx-auto  border-red-800 font-bold flex flex-row justify-between
             items-center bg-orange-200 text-blue-600 m-4"
             >
               {message}
