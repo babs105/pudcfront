@@ -186,7 +186,7 @@ function AddEquipment({ match }) {
               </div>
               <div>
                 <label> Opérateur de Maintenance: </label>
-                <select
+                <input
                   className="text-gray-900 py-2 rounded px-4  w-full  focus:outline-none focus:border-green-400 border-2"
                   ref={register}
                   type="text"
