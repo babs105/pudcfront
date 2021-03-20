@@ -34,12 +34,8 @@ function ComiteList() {
     return rows.filter(
       (row) =>
         row.nomComite.toString().toLowerCase().indexOf(findKey.toLowerCase()) >
-        -1
-      //   ||
-      // row.kilometrage
-      //   .toString()
-      //   .toLowerCase()
-      //   .indexOf(findKey.toLowerCase()) > -1
+          -1 ||
+        row.region.toString().toLowerCase().indexOf(findKey.toLowerCase()) > -1
     );
 
     // const columns = rows[0] && Object.keys(rows[0]);
