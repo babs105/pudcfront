@@ -63,7 +63,7 @@ function EquipementAll() {
     console.log(pageNumber);
     setCurrentPage(pageNumber);
   };
-
+  let history = useHistory();
   let i = 1;
   return (
     <>
@@ -184,16 +184,7 @@ function EquipementAll() {
                           <td className="py-4 px-2 border-b border-grey-light">
                             {
                               row.typeEquipement
-                              // <a
-                              //   download={row.name}
-                              //   href={`data:application/pdf;base64,${row.photoPresidente}`}
-                              // >
-                              //   <img
-                              //     class=" object-fill w-20 h-10"
-                              //     src={`data:application/pdf;base64,${row.photoPresidente}`}
-                              //     alt="doc"
-                              //   />
-                              // </a>
+                              
                             }
                           </td>
                           <td className="py-4 px-2 border-b border-grey-light">
@@ -215,7 +206,7 @@ function EquipementAll() {
                             <svg
                               onClick={() => {
                                 console.log(row.id);
-                                // history.push(`/comite-show/${row.id}`);
+                                 history.push(`/show-equipement/${row.id}`);
                               }}
                               className="w-5 h-5 cursor-pointer"
                               xmlns="http://www.w3.org/2000/svg"

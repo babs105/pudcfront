@@ -5,7 +5,6 @@ import generatePDF from "../GeneratePdf/GeneratePdf";
 
 function ComiteDetails({ match }) {
   const [comite, setcomite] = useState({});
-  const [openTab, setOpenTab] = React.useState(1);
   let idComite = match.params.id;
 
   useEffect(() => {
@@ -28,7 +27,7 @@ function ComiteDetails({ match }) {
   return (
     <>
       <div className="bg-gray-800 flex flex-col justify-center items-center space-y-14 text-white p-4  font-quicksand w-full">
-        <div className="w-10/12 flex flex-col space-y-10 justify-stretch items-stretch sm:flex-row sm:justify-between sm:space-x-2 sm:items-center ">
+        <div className="w-10/12 flex flex-col justify-start items-stretch sm:flex-row sm:justify-between sm:items-center ">
           <ul>
             <li>Comité : {comite.nomComite}</li>
             <li>Numero Récipissé : {comite.numRecepisse}</li>
@@ -39,17 +38,14 @@ function ComiteDetails({ match }) {
           </ul>
 
           <img
-            class=" object-fill w-40 h-40"
+            class="object-fill w-40 h-40"
             src={`data:**/*;base64,${comite.photoPresidente}`}
             alt="presidente"
           />
-          {/* <h2> Présidente</h2> */}
-
           <ul>
             <li>Village/Quartier : {comite.quartierVillage}</li>
             <li>Nom du Chef de Village: {comite.nomChefVillage}</li>
             <li>Téléphone : {comite.telChefVillage}</li>
-
             <li>Date Assemblée D'information : {comite.dateAssembleeInfo}</li>
             <li>
               Date Assemblée Constitutive :{comite.dateAssembleeConstitutive}

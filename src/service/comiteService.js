@@ -5,12 +5,20 @@ export const comiteService = {
   createComite,
   getAllComite,
   getComiteById,
+  updateComite,
 };
 
 function createComite(data) {
   // const requestOptions = user;
   return axios
     .post("/comite/create", data)
+    .then(handleResponse)
+    .then((comite) => comite);
+}
+function updateComite(data) {
+  // const requestOptions = user;
+  return axios
+    .post("/comite/update", data)
     .then(handleResponse)
     .then((comite) => comite);
 }
