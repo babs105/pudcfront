@@ -166,7 +166,7 @@ function ComiteList() {
                         <td className="py-4 px-2 border-b border-grey-light">
                           {i++}
                         </td>
-                        <td className="py-4 px-2 border-b border-grey-light">
+                        <td className="py-4 px-2 max-w-3/4 border-b border-grey-light">
                           {row.nomComite}
                         </td>
                         <td className="py-4 px-2 border-b border-grey-light ">
