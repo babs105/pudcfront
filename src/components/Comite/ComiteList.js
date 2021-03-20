@@ -140,7 +140,7 @@ function ComiteList() {
                 <thead>
                   <tr className="uppercase  bg-gray-300">
                     <th className="py-4 px-2 border-r-2 border-grey-800">N°</th>
-                    <th className="py-4 px-2 border-r-2 border-grey-800  ">
+                    <th className=" w-3/4 py-4 px-2 border-r-2 border-grey-800  ">
                       Dénomination
                     </th>
                     <th className="py-4 px-2 border-r-2 border-grey-800  ">
@@ -166,7 +166,7 @@ function ComiteList() {
                         <td className="py-4 px-2 border-b border-grey-light">
                           {i++}
                         </td>
-                        <td className="py-4 px-2 max-w-3/4 border-b border-grey-light">
+                        <td className="py-4 px-2 border-b border-grey-light">
                           {row.nomComite}
                         </td>
                         <td className="py-4 px-2 border-b border-grey-light ">
