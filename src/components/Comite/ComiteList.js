@@ -176,7 +176,7 @@ function ComiteList() {
                           {row.region}
                         </td>
                         <td className="  py-4 px-2 border-b border-grey-light">
-                          <div className=" flex justify-around items-center">
+                          <div className="flex flex-col sm:flex-row justify-around items-center">
                             <svg
                               onClick={() => {
                                 console.log(row.id);
