@@ -96,18 +96,18 @@ function Comite() {
     formData.append("comite", JSON.stringify(comite));
     console.log(formData.get("photoPresidente"));
     console.log(formData.get("comite"));
-    comiteService
-      .createComite(formData)
-      .then((res) => {
-        setlogging(false);
-        setmessage("Comité créé avec succes");
-        console.log(res);
-      })
-      .catch((e) => {
-        setlogging(false);
-        setmessage("Echec création comité ressayez");
-        console.log(e);
-      });
+    // comiteService
+    //   .createComite(formData)
+    //   .then((res) => {
+    //     setlogging(false);
+    //     setmessage("Comité créé avec succes");
+    //     console.log(res);
+    //   })
+    //   .catch((e) => {
+    //     setlogging(false);
+    //     setmessage("Echec création comité ressayez");
+    //     console.log(e);
+    //   });
   };
   return (
     <>
@@ -369,7 +369,7 @@ function Comite() {
                   class=" py-2 text-green-500 "
                   type="file"
                   name="image"
-                  accept="image/*"
+                  accept=".jpg, .jpeg, .png"
                   ref={register}
                 />
                 {/* <button className=" bg-orange-500 px-10 py-1" onClick={() => {}}>

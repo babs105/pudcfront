@@ -71,8 +71,8 @@ function ComiteEdit({ match }) {
       nomChefVillage: data.nomChefVillage,
       telChefVillage: data.telChefVillage,
       numRecepisse: data.numRecepisse,
-      dateAssembleeInfo: new Date(data.dateAssembleeInfo),
-      dateAssembleeConstitutive: new Date(data.dateAssembleeConstitutive),
+      dateAssembleeInfo: formatDate(data.dateAssembleeInfo),
+      dateAssembleeConstitutive: formatDate(data.dateAssembleeConstitutive),
       nbreEquipement: data.nbreEquipement,
       membres: listeMembre,
       listePresence: listePresence,
@@ -100,6 +100,9 @@ function ComiteEdit({ match }) {
         console.log(e);
       });
   };
+  function formatDate(date) {
+    return date.split("/").reverse().join("-");
+  }
   const editListePresence = (event) => {
     event.preventDefault();
     let personToEdit = {
