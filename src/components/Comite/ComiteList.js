@@ -136,15 +136,16 @@ function ComiteList() {
                 <thead>
                   <tr className="uppercase  bg-gray-300">
                     <th className="py-4 px-2 border-r-2 border-grey-800">N°</th>
+                    <th className="py-4 px-2 border-r-2 border-grey-light ">
+                      Région
+                    </th>
                     <th className=" py-4 px-2 border-r-2 border-grey-800  ">
                       Dénomination
                     </th>
                     <th className="py-4 px-2 border-r-2 border-grey-800  ">
                       Date Assemblee Constitutive
                     </th>
-                    <th className="py-4 px-2 border-r-2 border-grey-light ">
-                      Région
-                    </th>
+
                     <th className="py-4 px-2  border-grey-light">Action</th>
                   </tr>
                 </thead>
@@ -162,15 +163,16 @@ function ComiteList() {
                         <td className="py-4 px-2 border-b border-grey-light">
                           {i++}
                         </td>
+                        <td className="py-4 px-2 border-b border-grey-light ">
+                          {row.region}
+                        </td>
                         <td className="py-4 px-2 border-b border-grey-light">
                           {row.nomComite}
                         </td>
                         <td className="py-4 px-2 border-b border-grey-light ">
                           {row.dateAssembleeConstitutive}
                         </td>
-                        <td className="py-4 px-2 border-b border-grey-light ">
-                          {row.region}
-                        </td>
+
                         <td className=" py-4 px-2 border-b border-grey-light">
                           <div className=" flex justify-around items-center">
                             <svg
