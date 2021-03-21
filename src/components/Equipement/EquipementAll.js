@@ -90,7 +90,7 @@ function EquipementAll() {
           <input
             className="pl-6 focus:outline-none w-full bg-transparent text-gray-900"
             value={findKey}
-            placeholder="Rechercher par region ou par comite "
+            placeholder="Rechercher par region ou par comite ou par statut ou par type "
             onChange={(event) => setFindKey(event.target.value)}
           />
         </div>

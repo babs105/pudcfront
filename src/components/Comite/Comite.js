@@ -369,6 +369,7 @@ function Comite() {
                   class=" py-2 text-green-500 "
                   type="file"
                   name="image"
+                  accept="image/*"
                   ref={register}
                 />
                 {/* <button className=" bg-orange-500 px-10 py-1" onClick={() => {}}>
