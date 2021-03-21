@@ -85,7 +85,7 @@ function ComiteList() {
         <input
           className="pl-6 focus:outline-none w-full bg-transparent text-gray-900"
           value={findKey}
-          placeholder="Rechercher ..."
+          placeholder="Rechercher par Région ou par Comité"
           onChange={(event) => setFindKey(event.target.value)}
         />
       </div>
