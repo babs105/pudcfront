@@ -34,7 +34,11 @@ function EquipementAll() {
           .toLowerCase()
           .indexOf(findKey.toLowerCase()) > -1 ||
         row.statutEquipement
-
+          .toString()
+          .toLowerCase()
+          .indexOf(findKey.toLowerCase()) > -1
+          ||
+        row.region
           .toString()
           .toLowerCase()
           .indexOf(findKey.toLowerCase()) > -1
@@ -140,6 +144,9 @@ function EquipementAll() {
                         N°
                       </th>
                       <th className="py-4 px-2 border-r-2 border-grey-800">
+                        Region
+                      </th>
+                      <th className="py-4 px-2 border-r-2 border-grey-800">
                         Comite
                       </th>
                       <th className="py-4 px-2 border-r-2 border-grey-800">
@@ -171,6 +178,9 @@ function EquipementAll() {
                         >
                           <td className="py-4 px-2 border-b border-grey-light">
                             {i++}
+                          </td>
+                          <td className="py-4 px-2 border-b border-grey-light">
+                            {row.region}
                           </td>
                           <td className="py-4 px-2 border-b border-grey-light">
                             {row.nomComite}

@@ -38,7 +38,9 @@ function ShowEquipement({ match }) {
             <li>Code Equipement : {equipement.nameEquipement}</li>
             <li>Date Réception: {equipement.dateReception}</li>
             <li>Type Equipement : {equipement.typeEquipement}</li>
+            <li>Entreposage : {equipement.entreposage}</li>
             <li>Statut Equipement : {equipement.statutEquipement}</li>
+            <li>Opérateur Maintenance : {equipement.operateurMaintenance}</li>
           </ul>
         </div>
 

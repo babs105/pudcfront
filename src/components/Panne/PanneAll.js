@@ -35,7 +35,8 @@ function PanneAll() {
         row.nameEquipement
           .toString()
           .toLowerCase()
-          .indexOf(findKey.toLowerCase()) > -1
+          .indexOf(findKey.toLowerCase()) > -1 ||
+        row.region.toString().toLowerCase().indexOf(findKey.toLowerCase()) > -1
     );
 
     // const columns = rows[0] && Object.keys(rows[0]);
@@ -138,6 +139,9 @@ function PanneAll() {
                         N°
                       </th>
                       <th className="py-4 px-2 border-r-2 border-grey-800">
+                        Region
+                      </th>
+                      <th className="py-4 px-2 border-r-2 border-grey-800">
                         Comite
                       </th>
                       <th className="py-4 px-2 border-r-2 border-grey-800">
@@ -169,6 +173,9 @@ function PanneAll() {
                         >
                           <td className="py-4 px-2 border-b border-grey-light">
                             {i++}
+                          </td>
+                          <td className="py-4 px-2 border-b border-grey-light">
+                            {row.region}
                           </td>
                           <td className="py-4 px-2 border-b border-grey-light">
                             {row.nomComite}
