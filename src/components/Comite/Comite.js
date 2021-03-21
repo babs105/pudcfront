@@ -13,7 +13,15 @@ const schema = yup.object().shape({
     .mixed()
     .required("Charger le fichier")
     .test("fileSize", "Charger le fichier ou fichier trop lourd", (value) => {
+      console.log(value);
       return value.length && value[0].size <= 2000000;
+    })
+    .test("fileFormat", "format autorisé .jpg ou .jpeg ou .png ", (value) => {
+      console.log(value);
+      return (
+        value.length &&
+        ["image/jpg", "image/jpeg", "image/png"].includes(value[0].type)
+      );
     }),
 });
 function Comite() {

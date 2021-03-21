@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { comiteService } from "../../service/comiteService";
-import { unregister } from "react-scroll/modules/mixins/scroller";
 const schema = yup.object().shape({
   nomComite: yup.string().required(),
   commune: yup.string().required(),
@@ -14,6 +13,13 @@ const schema = yup.object().shape({
       .mixed()
       .test("fileSize", "Charger le fichier ou fichier trop lourd", (value) => {
         return value.length && value[0].size <= 2000000;
+      })
+      .test("fileFormat", "format autorisé .jpg ou .jpeg ou .png ", (value) => {
+        console.log(value);
+        return (
+          value.length &&
+          ["image/jpg", "image/jpeg", "image/png"].includes(value[0].type)
+        );
       }),
   }),
 });
