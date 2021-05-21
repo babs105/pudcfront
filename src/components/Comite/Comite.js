@@ -104,18 +104,18 @@ function Comite() {
     formData.append("comite", JSON.stringify(comite));
     console.log(formData.get("photoPresidente"));
     console.log(formData.get("comite"));
-    // comiteService
-    //   .createComite(formData)
-    //   .then((res) => {
-    //     setlogging(false);
-    //     setmessage("Comité créé avec succes");
-    //     console.log(res);
-    //   })
-    //   .catch((e) => {
-    //     setlogging(false);
-    //     setmessage("Echec création comité ressayez");
-    //     console.log(e);
-    //   });
+    comiteService
+      .createComite(formData)
+      .then((res) => {
+        setlogging(false);
+        setmessage("Comité créé avec succes");
+        console.log(res);
+      })
+      .catch((e) => {
+        setlogging(false);
+        setmessage("Echec création comité ressayez");
+        console.log(e);
+      });
   };
   return (
     <>
