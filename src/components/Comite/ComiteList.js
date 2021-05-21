@@ -61,37 +61,12 @@ function ComiteList() {
     console.log(pageNumber);
     setCurrentPage(pageNumber);
   };
-  const imprimer = () => {
-    window.print();
-  };
+
   let i = 1;
   return (
     <div className="flex flex-col items-center space-y-4 justify-start h-screen font-quicksand text-white bg-gray-800 antialiased  justify-items-center p-5">
-      <div className="relative py-3 px-4 rounded-lg sm:w-4/12 shadow bg-white ">
-        <svg
-          className="w-5 h-5 absolute text-gray-500 left-4 top-3"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-          />
-        </svg>
-        <input
-          className="pl-6 focus:outline-none w-full bg-transparent text-gray-900"
-          value={findKey}
-          placeholder="Rechercher par Région ou par Comité"
-          onChange={(event) => setFindKey(event.target.value)}
-        />
-      </div>
-
       <h2 className="text-center text-white text-lg"> Liste des Comités</h2>
-      <div className="flex w-full justify-start text-white">
+      <div className="flex w-full items-baseline justify-between text-white">
         <button
           className="bg-green-600 p-2 rounded-lg mb-2"
           onClick={() => {
@@ -100,6 +75,28 @@ function ComiteList() {
         >
           Ajouter Comité
         </button>
+        <div className="relative py-3 px-4 rounded-lg sm:w-4/12 shadow bg-white ">
+          <svg
+            className="w-5 h-5 absolute text-gray-500 left-4 top-3"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+          <input
+            className="pl-6 focus:outline-none w-full bg-transparent text-gray-900"
+            value={findKey}
+            placeholder="Rechercher par Région ou par Comité"
+            onChange={(event) => setFindKey(event.target.value)}
+          />
+        </div>
       </div>
       {loading ? (
         <div
